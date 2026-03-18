@@ -7,21 +7,58 @@ const FRAMEWORK = {
     {
       id: "secops", label: "Security\nOperations", color: "#3B82F6", icon: "🛡",
       children: [
-        { id: "so1", label: "Threat Prevention", desc: "Asset management, firewalls, anti-malware, DLP, proxy/content filtering, DNS security, DDoS protection, hardening, encryption & PKI, and endpoint security." },
-        { id: "so2", label: "Vulnerability Management", desc: "Continuous scanning across OS, network, apps, databases, containers, cloud, mobile, IoT, OT/SCADA. Risk-based prioritization (EPSS), mitigation SLAs, and metrics." },
-        { id: "so3", label: "Threat Detection & SOC", desc: "SIEM/log correlation, IDS/IPS alerting, NetFlow, threat hunting, insider threat, SOC operations, staffing, procedures, and ISAC partnerships." },
-        { id: "so4", label: "Offensive Security", desc: "Red/blue team exercises, pen testing, physical security assessments, social engineering resilience, deception technologies, and full packet inspection." },
-        { id: "so5", label: "Automation & Analytics", desc: "SOAR playbooks, automated threat hunting, patching, risk scoring, asset inventory, security metrics, compliance checks, and AI/ML-augmented detection." },
+        { id: "so1", label: "Threat Prevention", desc: "Asset management, firewalls, anti-malware, DLP, DNS security, DDoS protection, hardening, encryption & PKI, and endpoint security.", children: [
+          { label: "Asset Management & Inventory", desc: "Comprehensive hardware/software asset inventory, discovery, and lifecycle tracking." },
+          { label: "Firewall Management", desc: "Firewall rule management, review cadence, segmentation enforcement, and next-gen firewall capabilities." },
+          { label: "Anti-Malware & EDR", desc: "Endpoint detection and response, anti-malware deployment, behavioral analysis, and threat containment." },
+          { label: "Data Loss Prevention", desc: "DLP policies across email, web, endpoints, and cloud to prevent unauthorized data exfiltration." },
+          { label: "DNS Security", desc: "DNS filtering, sinkholing, DNSSEC, and DNS-layer threat prevention." },
+          { label: "DDoS Protection", desc: "Volumetric and application-layer DDoS mitigation, scrubbing services, and failover planning." },
+          { label: "System Hardening", desc: "CIS benchmarks, baseline configurations, unnecessary service removal, and hardening validation." },
+          { label: "Encryption & PKI", desc: "Certificate management, PKI infrastructure, encryption standards, and key lifecycle management." },
+          { label: "Endpoint Security", desc: "Endpoint protection platforms, device control, application whitelisting, and host-based IPS." },
+        ] },
+        { id: "so2", label: "Vulnerability Management", desc: "Continuous scanning across OS, network, apps, containers, cloud, and OT. Risk-based prioritization (EPSS), mitigation SLAs, and metrics.", children: [
+          { label: "Continuous Scanning", desc: "Vulnerability scanning across OS, network, application, container, cloud, and OT environments." },
+          { label: "Risk-Based Prioritization (EPSS)", desc: "Using EPSS, CVSS, and business context to prioritize remediation efforts." },
+          { label: "Mitigation SLAs", desc: "Defined remediation timelines by severity with escalation for overdue vulnerabilities." },
+          { label: "Vulnerability Metrics & Reporting", desc: "Mean time to remediate, scan coverage, aging analysis, and executive dashboards." },
+          { label: "Remediation Workflow", desc: "Ticketing integration, remediation assignment, verification scanning, and exception management." },
+        ] },
+        { id: "so3", label: "Threat Detection & SOC", desc: "SIEM/log correlation, IDS/IPS alerting, NetFlow analysis, threat hunting, insider threat detection, SOC operations, and ISAC partnerships.", children: [
+          { label: "SIEM & Log Correlation", desc: "Centralized log management, correlation rules, alerting, and long-term retention." },
+          { label: "IDS/IPS", desc: "Network and host-based intrusion detection and prevention with tuned signatures and behavioral rules." },
+          { label: "Network Traffic Analysis", desc: "NetFlow, packet capture, east-west traffic visibility, and anomaly detection." },
+          { label: "Threat Hunting", desc: "Proactive hypothesis-driven hunting, IOC sweeps, and behavioral analytics." },
+          { label: "Insider Threat Detection", desc: "User behavior analytics, privileged user monitoring, and anomalous access detection." },
+          { label: "SOC Operations & Staffing", desc: "SOC structure, shift coverage, analyst tiers, runbooks, and performance metrics." },
+          { label: "ISAC Partnerships", desc: "Information sharing and analysis center memberships, threat sharing, and sector coordination." },
+        ] },
+        { id: "so4", label: "Offensive Security", desc: "Red/blue/purple team exercises, penetration testing, physical security assessments, social engineering resilience, and deception technologies." },
+        { id: "so5", label: "Automation & Orchestration", desc: "SOAR playbooks, automated threat hunting, patching automation, risk scoring, compliance checks, and AI/ML-augmented detection." },
+        { id: "so6", label: "Threat Intelligence", desc: "Threat intelligence feeds, IOC management, dark web monitoring, industry-specific intelligence, and TI platform integration." },
+        { id: "so7", label: "Digital Forensics", desc: "Forensic readiness planning, evidence collection and chain of custody, memory/disk/network forensics, and e-discovery support." },
+        { id: "so8", label: "Attack Surface Management", desc: "External attack surface discovery, shadow IT detection, continuous exposure monitoring, and internet-facing asset inventory." },
       ],
     },
     {
       id: "incident", label: "Incident Response\n& Disclosure", color: "#EF4444", icon: "📢",
       children: [
-        { id: "ir1", label: "IR Capability & Playbooks", desc: "Incident response plans, playbook development/testing, readiness assessments, first responder training, forensic investigation, and IR partner retainers." },
-        { id: "ir2", label: "Ransomware Resilience", desc: "Business impact analysis, containment strategy, backup adequacy testing (offline backups), mock exercises, machine integrity checking, BC/DR integration." },
-        { id: "ir3", label: "Stakeholder Communication", desc: "Tiered notification for customers, regulators, board, partners. Media relations, SLA-driven disclosure timelines, and transparent status pages." },
-        { id: "ir4", label: "Regulatory Notification", desc: "HIPAA breach notification, state AG requirements, SEC disclosure, GDPR 72-hour notification, DORA, and cross-jurisdiction coordination." },
-        { id: "ir5", label: "Post-Incident Transparency", desc: "Blameless retrospectives, public postmortems, lessons-learned integration, control gap remediation, and supply chain incident management." },
+        { id: "ir1", label: "IR Capability & Playbooks", desc: "Incident response plans, playbook development and testing, readiness assessments, first responder training, and IR partner retainers.", children: [
+          { label: "Incident Response Plans", desc: "Documented IR plans with roles, escalation paths, and communication templates." },
+          { label: "Playbook Development & Testing", desc: "Scenario-specific playbooks (ransomware, data breach, insider threat) with regular testing." },
+          { label: "Readiness Assessments", desc: "Periodic IR readiness evaluations against frameworks and lessons learned." },
+          { label: "First Responder Training", desc: "Training for initial incident handlers on triage, evidence preservation, and escalation." },
+          { label: "Forensic Investigation Capability", desc: "In-house or retainer-based forensic investigation for root cause analysis." },
+          { label: "IR Partner Retainers", desc: "Pre-negotiated retainers with IR firms, legal counsel, and crisis communications." },
+        ] },
+        { id: "ir2", label: "Ransomware Resilience", desc: "Business impact analysis, containment strategy, backup adequacy testing, mock exercises, machine integrity checking, and BC/DR integration." },
+        { id: "ir3", label: "Crisis Management", desc: "Crisis team activation protocols, executive decision frameworks, war room procedures, and cross-functional coordination." },
+        { id: "ir4", label: "Stakeholder Communication", desc: "Tiered notification for customers, regulators, board, and partners. Media relations, SLA-driven disclosure timelines, and transparent status pages." },
+        { id: "ir5", label: "Regulatory Notification", desc: "HIPAA breach notification, state AG requirements, SEC disclosure, GDPR 72-hour notification, DORA, and cross-jurisdiction coordination." },
+        { id: "ir6", label: "Post-Incident Transparency", desc: "Blameless retrospectives, public postmortems, lessons-learned integration, control gap remediation, and supply chain incident management." },
+        { id: "ir7", label: "Tabletop & Simulation", desc: "Scenario-based tabletop exercises, cross-functional simulations, executive-level exercises, and after-action reporting." },
+        { id: "ir8", label: "Vulnerability Disclosure & Bug Bounty", desc: "Coordinated vulnerability disclosure programs, bug bounty operations, security.txt implementation, researcher relationship management, and disclosure SLAs." },
       ],
     },
     {
@@ -29,39 +66,60 @@ const FRAMEWORK = {
       children: [
         { id: "ia1", label: "Identity Lifecycle", desc: "User provisioning, RBAC, HR integration, identity repositories (LDAP/AD/Cloud), unified profiles, and deprovisioning workflows." },
         { id: "ia2", label: "Authentication & MFA", desc: "Multi-factor authentication, passwordless, passkeys, authenticator apps, tokens, biometrics, and one-time passcodes." },
-        { id: "ia3", label: "SSO & Federation", desc: "Single sign-on, SAML, OAuth, OpenID, Shibboleth, cross-cloud federation, and customer identity for ecommerce/mobile." },
-        { id: "ia4", label: "Privileged Access (PAM)", desc: "Privileged access management, API auth, secrets management, digital certificates, and just-in-time access." },
-        { id: "ia5", label: "Zero Trust Identity", desc: "IAM with zero trust architecture, IoT device identities, continuous authentication, context-aware access, and identity threat detection." },
+        { id: "ia3", label: "SSO & Federation", desc: "Single sign-on, SAML, OAuth, OpenID Connect, cross-cloud federation, and customer identity for ecommerce/mobile." },
+        { id: "ia4", label: "Privileged Access (PAM)", desc: "Privileged access management, just-in-time access, session recording, break-glass procedures, and service account management." },
+        { id: "ia5", label: "Zero Trust Identity", desc: "Continuous authentication, context-aware access, identity threat detection, device trust signals, and micro-segmented identity." },
+        { id: "ia6", label: "Identity Governance (IGA)", desc: "Access certifications, separation of duties enforcement, role mining, entitlement reviews, and orphaned account detection." },
+        { id: "ia7", label: "Non-Human Identities", desc: "Service accounts, API keys, machine identities, workload identity federation, certificate-based auth, and secrets rotation." },
+        { id: "ia8", label: "Customer Identity (CIAM)", desc: "Customer registration flows, social login, progressive profiling, consent-aware identity, and account takeover protection." },
       ],
     },
     {
       id: "governance", label: "Governance\n& Strategy", color: "#8B5CF6", icon: "⚖",
       children: [
-        { id: "gv1", label: "Strategy & Alignment", desc: "Business alignment, 1-3 year roadmap, corporate objectives mapping, continuous management updates, innovation, and expectations management." },
+        { id: "gv1", label: "Strategy & Alignment", desc: "Business alignment, 1-3 year roadmap, corporate objectives mapping, continuous management updates, and expectations management." },
         { id: "gv2", label: "Frameworks & Standards", desc: "NIST CSF, ISO 27001, COSO, COBIT, ITIL, FAIR, FISMA, CMMC, and cross-framework visibility for multi-regulatory environments." },
-        { id: "gv3", label: "Policies & RACI", desc: "Living policy library, security standards, roles and responsibilities (RACI), data ownership definitions, and conflict management." },
+        { id: "gv3", label: "Policies & RACI", desc: "Living policy library, security standards, roles and responsibilities (RACI), data ownership definitions, and exception management." },
         { id: "gv4", label: "Metrics & Board Reporting", desc: "Operational/executive metrics, control effectiveness, risk reduction tracking, ROSI, security debt quantification, and board presentations." },
-        { id: "gv5", label: "Trust as Corporate Value", desc: "Security team branding, transparency commitments, trust reporting, public trust scores, and security as business differentiator." },
+        { id: "gv5", label: "Trust as Corporate Value", desc: "Transparency commitments, trust reporting, public trust scores, security as business differentiator, and trust brand building." },
+        { id: "gv6", label: "Security Committee & Charter", desc: "Steering committee structure, charter, meeting cadence, cross-functional representation, and decision authority." },
+        { id: "gv7", label: "Regulatory Intelligence", desc: "Regulatory horizon scanning, impact assessment, compliance roadmap, legislative tracking, and proactive regulatory engagement." },
+        { id: "gv8", label: "Program Maturity Assessment", desc: "Maturity model benchmarking (CMM, C2M2), capability gap analysis, peer comparison, and continuous improvement planning." },
+        { id: "gv9", label: "Governance-as-Code", desc: "Policy-as-code enforcement in pipelines, automated compliance verification, software-defined lifecycle governance, and machine-readable security policies." },
+        { id: "gv10", label: "Security Evangelism", desc: "Internal security marketing, stakeholder awareness campaigns, security value communication, executive briefing programs, and culture-building initiatives." },
       ],
     },
     {
       id: "risk", label: "Risk Management\n& Compliance", color: "#A855F7", icon: "📊",
       children: [
-        { id: "rm1", label: "Risk Assessment & CRQ", desc: "Ongoing risk assessments, pen testing, cyber risk quantification (CRQ), FAIR methodology, and centralized risk register." },
-        { id: "rm2", label: "Compliance & Audits", desc: "HIPAA/HITECH, PCI, SOX, CCPA/GDPR, SSAE 18, NIST/FISMA, CMMC, HITRUST, DORA, SEC, and regular audits." },
-        { id: "rm3", label: "Legal & Data Governance", desc: "Data discovery/ownership, vendor contracts, investigations/forensics, attorney-client privilege, data retention/destruction, loss/fraud prevention." },
-        { id: "rm4", label: "OT & Physical Security", desc: "Industrial control systems (PLCs, SCADA, HMIs), OT risk, physical security, and IT/OT/IoT convergence." },
+        { id: "rm1", label: "Risk Assessment & CRQ", desc: "Ongoing risk assessments, cyber risk quantification (CRQ), FAIR methodology, and centralized risk register.", children: [
+          { label: "Ongoing Risk Assessments", desc: "Regular risk assessment cycles with defined scope, methodology, and reporting." },
+          { label: "Cyber Risk Quantification (CRQ)", desc: "Financial quantification of cyber risk using models like FAIR for executive communication." },
+          { label: "FAIR Methodology", desc: "Factor Analysis of Information Risk implementation for consistent risk measurement." },
+          { label: "Centralized Risk Register", desc: "Single source of truth for all identified risks with owners, ratings, and treatment plans." },
+          { label: "Risk Scenario Modeling", desc: "Modeling specific threat scenarios with likelihood and impact projections." },
+          { label: "Pen Test Integration", desc: "Incorporating penetration testing results into risk assessments and register updates." },
+        ] },
+        { id: "rm2", label: "Compliance & Audits", desc: "HIPAA/HITECH, PCI, SOX, CCPA/GDPR, SSAE 18, NIST/FISMA, CMMC, HITRUST, DORA, SEC, and regular audit management." },
+        { id: "rm3", label: "Legal & Data Governance", desc: "Data discovery/ownership, vendor contracts, investigations/forensics, attorney-client privilege, data retention/destruction, and loss prevention." },
+        { id: "rm4", label: "OT & Physical Security", desc: "Industrial control systems (PLCs, SCADA, HMIs), OT risk assessment, physical security, and IT/OT/IoT convergence." },
         { id: "rm5", label: "Cyber Risk Insurance", desc: "Coverage evaluation, ransomware inclusion, policy adequacy, claims readiness, and insurance as transparent risk transfer." },
+        { id: "rm6", label: "Risk Appetite & Tolerance", desc: "Board-approved risk appetite statement, tolerance thresholds, risk acceptance criteria, and escalation triggers." },
+        { id: "rm7", label: "Control Assurance", desc: "Control testing programs, effectiveness measurement, continuous control monitoring, and automated evidence collection." },
+        { id: "rm8", label: "Regulatory Examination Readiness", desc: "Examiner relationship management, evidence preparation, finding remediation tracking, and consent order management." },
       ],
     },
     {
       id: "secarch", label: "Security\nArchitecture", color: "#0EA5E9", icon: "🏗",
       children: [
         { id: "sa1", label: "Zero Trust & SASE", desc: "Zero trust models/roadmap, SASE/SSE strategy, micro-segmentation, overlay networks, secure enclaves, and SDN." },
-        { id: "sa2", label: "Defense-in-Depth", desc: "Network segmentation, application protection, remote access security, encryption technologies, and network function virtualization." },
-        { id: "sa3", label: "Cloud & Hybrid Arch.", desc: "Multi-cloud security, cloud-native apps, container security, service mesh, serverless security, and CSPM." },
-        { id: "sa4", label: "Secure SDLC", desc: "Security in project requirements, threat modeling/design reviews, security testing, certification/accreditation, and DevSecOps pipelines." },
-        { id: "sa5", label: "Resilient Design", desc: "Backup/replication/multi-site, BC architecture, DR posture, and infrastructure-as-code security." },
+        { id: "sa2", label: "Defense-in-Depth", desc: "Network segmentation, application protection layers, remote access security, encryption technologies, and network function virtualization." },
+        { id: "sa3", label: "Cloud & Hybrid Architecture", desc: "Multi-cloud security architecture, cloud-native application security, container security, service mesh, serverless security, and CSPM." },
+        { id: "sa4", label: "Secure Design Review", desc: "Architecture review boards, security design patterns, reference architectures, and design-phase threat modeling." },
+        { id: "sa5", label: "Resilient Design", desc: "Backup/replication/multi-site architecture, BC architecture, DR posture, infrastructure-as-code security, and chaos engineering." },
+        { id: "sa6", label: "Data Security Architecture", desc: "Encryption at rest and in transit, tokenization, key management infrastructure, data masking, and database security." },
+        { id: "sa7", label: "Network Security Architecture", desc: "Firewall architecture, DNS security design, east-west traffic inspection, network access control, and SD-WAN security." },
+        { id: "sa8", label: "Endpoint Architecture", desc: "EDR/XDR strategy, endpoint hardening standards, mobile device architecture, and browser isolation." },
       ],
     },
     {
@@ -70,59 +128,122 @@ const FRAMEWORK = {
         { id: "ai1", label: "AI Governance & Policy", desc: "AI governance framework, organizational policies, transparency requirements, LLM/agent oversight, and NIST AI RMF alignment." },
         { id: "ai2", label: "Responsible AI & Ethics", desc: "Safe/ethical use standards, algorithmic bias testing, fairness metrics, human-in-the-loop safeguards, explainability, and AI ethics board." },
         { id: "ai3", label: "Shadow AI & Inventory", desc: "AI system registry, shadow AI discovery, sanctioned tool catalog, use case review, and IP protection for AI outputs." },
-        { id: "ai4", label: "Securing AI Systems", desc: "Adversarial attack defense, training/test data protection, prompt injection, data poisoning, OWASP Top 10 for LLMs, and AI pen testing." },
+        { id: "ai4", label: "Securing AI Systems", desc: "Adversarial attack defense, training/test data protection, prompt injection prevention, data poisoning, OWASP Top 10 for LLMs, and AI pen testing." },
         { id: "ai5", label: "Agentic AI & Autonomy", desc: "Guardrails for autonomous agents, permission boundaries, audit trails, kill-switch protocols, and human oversight thresholds." },
-        { id: "ai6", label: "AI-Enabled Security", desc: "AI in threat detection, GenAI task automation, AI-augmented SOC, ML model training/retraining, and security use cases." },
+        { id: "ai6", label: "AI-Enabled Security", desc: "AI in threat detection, GenAI task automation, AI-augmented SOC operations, ML model training/retraining, and security use cases." },
+        { id: "ai7", label: "AI Risk Assessment", desc: "Model risk management, AI-specific risk register, impact assessments, model validation, and drift detection." },
+        { id: "ai8", label: "AI Supply Chain & Provenance", desc: "Model provenance tracking, training data lineage, third-party model risk, foundation model dependencies, and model cards." },
       ],
     },
     {
       id: "supply", label: "Supply Chain\nTransparency", color: "#10B981", icon: "🔗",
       children: [
-        { id: "sc1", label: "Third-Party Risk (TPRM)", desc: "Vendor risk tiering, security assessments, contractual requirements, continuous monitoring, and TPRM automation." },
-        { id: "sc2", label: "Software Supply Chain", desc: "SBOM requirements, dependency scanning, open-source inventory, source code supply chain security, and provenance verification." },
-        { id: "sc3", label: "Concentration & 4th Party", desc: "Dependency mapping, single-point-of-failure analysis, Nth-party visibility, cascading obligations, and beyond-Tier-1 mapping." },
-        { id: "sc4", label: "Vendor Transparency", desc: "Published vendor security standards, subprocessor lists, data flow disclosures, SLA transparency, and public vendor posture." },
-        { id: "sc5", label: "Supply Chain Incidents", desc: "Software component inventory for IR, supply chain breach playbooks, vendor notification protocols, and coordinated disclosure." },
+        { id: "sc1", label: "Third-Party Risk (TPRM)", desc: "Vendor risk tiering, security assessments, contractual requirements, continuous monitoring, and TPRM automation.", children: [
+          { label: "Vendor Risk Tiering", desc: "Classification of vendors by criticality, data access, and business impact for proportional assessment." },
+          { label: "Security Questionnaires & Assessments", desc: "Standardized security questionnaires (SIG, CAIQ), on-site assessments, and evidence review." },
+          { label: "Contractual Security Requirements", desc: "Security obligations in contracts including breach notification, audit rights, and data handling." },
+          { label: "Continuous Monitoring", desc: "Ongoing vendor risk monitoring beyond point-in-time assessments using automated feeds and signals." },
+          { label: "TPRM Automation & Tooling", desc: "Platforms and workflows for scaling vendor assessments, tracking remediation, and reporting." },
+          { label: "Vendor Risk Remediation Tracking", desc: "Tracking vendor remediation of identified risks with SLAs and escalation paths." },
+        ] },
+        { id: "sc2", label: "Software Supply Chain", desc: "SBOM requirements, dependency scanning, open-source inventory, provenance verification, and build pipeline integrity.", children: [
+          { label: "SBOM Generation & Management", desc: "Creating, maintaining, and sharing software bills of materials for all delivered software." },
+          { label: "Dependency Scanning", desc: "Automated scanning of direct and transitive dependencies for known vulnerabilities." },
+          { label: "Provenance Verification", desc: "Verifying the origin and integrity of software components through signatures and attestations." },
+          { label: "Build Pipeline Integrity", desc: "Securing build systems, reproducible builds, and protecting against build-time tampering." },
+          { label: "Artifact Signing", desc: "Cryptographic signing of build artifacts, container images, and release packages." },
+          { label: "Open Source Governance", desc: "Policies for open source adoption, contribution, license compliance, and community engagement." },
+        ] },
+        { id: "sc3", label: "Procurement Security", desc: "Security requirements in RFPs, contract security language, security addenda, and vendor onboarding security gates." },
+        { id: "sc4", label: "Continuous Vendor Monitoring", desc: "Real-time vendor risk scoring, breach notification feeds, financial health monitoring, and automated reassessment triggers." },
+        { id: "sc5", label: "Concentration & 4th Party", desc: "Dependency mapping, single-point-of-failure analysis, Nth-party visibility, cascading obligations, and beyond-Tier-1 mapping." },
+        { id: "sc6", label: "Cloud & SaaS Supply Chain", desc: "SaaS security posture assessment, cloud provider dependencies, shared responsibility gap analysis, and SaaS-to-SaaS integration risk." },
+        { id: "sc7", label: "Vendor Transparency", desc: "Published vendor security standards, subprocessor lists, data flow disclosures, SLA transparency, and public vendor posture." },
+        { id: "sc8", label: "Supply Chain Incidents", desc: "Software component inventory for IR, supply chain breach playbooks, vendor notification protocols, and coordinated disclosure." },
+        { id: "sc9", label: "Regulatory & Compliance", desc: "EU Cyber Resilience Act, EO 14028, DORA ICT third-party provisions, NIS2 supply chain requirements, and cross-border vendor obligations." },
       ],
     },
     {
       id: "data", label: "Data Practices\n& Privacy", color: "#EC4899", icon: "🔐",
       children: [
-        { id: "dp1", label: "Data Gov. & Classification", desc: "Data discovery, classification, lineage, retention/destruction, access controls, and transparent lifecycle management." },
+        { id: "dp1", label: "Data Governance & Classification", desc: "Data discovery, classification, lineage, retention/destruction, access controls, and transparent lifecycle management." },
         { id: "dp2", label: "Privacy Engineering", desc: "Privacy-by-design, data minimization, purpose limitation, automated PIAs, encryption/masking, and DLP integration." },
-        { id: "dp3", label: "Consent & Rights Mgmt", desc: "Consent platforms, DSR fulfillment, preference centers, right-to-delete workflows, and CCPA/GDPR rights compliance." },
+        { id: "dp3", label: "Consent & Rights Management", desc: "Consent platforms, DSR fulfillment, preference centers, right-to-delete workflows, and CCPA/GDPR rights compliance." },
         { id: "dp4", label: "Cross-Border Data Flows", desc: "Transfer impact assessments, SCCs, adequacy decisions, data sovereignty, and jurisdictional mapping." },
         { id: "dp5", label: "Data Ethics", desc: "Ethical use policies, secondary use restrictions, anonymization standards, data ethics board, and customer-facing transparency." },
+        { id: "dp6", label: "Privacy Program Management", desc: "Privacy office structure, privacy champions network, privacy training programs, and regulatory relationship management." },
+        { id: "dp7", label: "Data Breach & Incident Response", desc: "Privacy-specific IR playbooks, breach notification workflows, regulatory reporting automation, and remediation tracking." },
+        { id: "dp8", label: "Records Management", desc: "Retention schedules, legal hold management, records disposition, e-discovery readiness, and archival policies." },
       ],
     },
     {
       id: "appsec", label: "Application\nSecurity", color: "#F97316", icon: "💻",
       children: [
-        { id: "as1", label: "Secure Development", desc: "App development standards, secure code training/review, SAST/DAST integration, and source code analysis." },
-        { id: "as2", label: "DevSecOps Pipeline", desc: "Security in CI/CD pipelines, IaC security, change control, file integrity monitoring, and shift-left testing." },
-        { id: "as3", label: "API Security", desc: "API inventory automation, API auth, rate limiting, input validation, and API-specific threat modeling." },
-        { id: "as4", label: "Web Application Defense", desc: "WAF, application vulnerability testing, DDoS protection, and bot management." },
-        { id: "as5", label: "Open Source & SCA", desc: "OSS component inventory, software composition analysis, license compliance, public repo security, and dependency tracking." },
+        { id: "as1", label: "Secure Development", desc: "Secure coding standards, code review gates, SAST/DAST integration, and source code analysis.", children: [
+          { label: "Secure Coding Standards", desc: "Language-specific secure coding guidelines, banned function lists, and security linting rules enforced in CI." },
+          { label: "Mandatory Code Review", desc: "Security-focused review gates with reviewer checklists and mandatory approval before merge." },
+          { label: "SAST Integration", desc: "Static application security testing integrated into build pipelines with tuned rulesets and suppression management." },
+          { label: "DAST Integration", desc: "Dynamic testing against running applications, authenticated scanning, and crawl coverage validation." },
+          { label: "IDE Security Plugins", desc: "Real-time security feedback in developer IDEs for instant vulnerability detection during coding." },
+          { label: "Developer Security Training", desc: "Hands-on secure coding training, CTF exercises, and language/framework-specific security workshops." },
+        ] },
+        { id: "as2", label: "Security Champions", desc: "Embedded security advocates in development teams, champion training programs, office hours, and escalation paths." },
+        { id: "as3", label: "DevSecOps Pipeline", desc: "Security integration in CI/CD pipelines, IaC scanning, shift-left testing, change control, and file integrity monitoring.", children: [
+          { label: "CI/CD Security Gates", desc: "Automated security quality gates that block builds failing security thresholds." },
+          { label: "IaC Scanning", desc: "Infrastructure-as-code scanning for misconfigurations in Terraform, CloudFormation, Kubernetes manifests." },
+          { label: "Shift-Left Testing", desc: "Security testing moved earlier in the SDLC with pre-commit hooks and PR-level scanning." },
+          { label: "Change Control & Approval", desc: "Formal change management with security review requirements for production deployments." },
+          { label: "File Integrity Monitoring", desc: "Detection of unauthorized changes to critical files, configurations, and binaries." },
+          { label: "Pipeline Secret Detection", desc: "Automated scanning for leaked credentials, API keys, and tokens in CI/CD pipelines and artifacts." },
+        ] },
+        { id: "as4", label: "Threat Modeling", desc: "Architecture threat modeling, STRIDE/PASTA methodologies, design review gates, and data flow diagramming." },
+        { id: "as5", label: "API Security", desc: "API inventory and discovery, authentication and authorization, rate limiting, input validation, and API-specific threat modeling.", children: [
+          { label: "API Discovery & Inventory", desc: "Automated discovery and cataloging of all APIs including shadow and zombie APIs." },
+          { label: "API Authentication & Authorization", desc: "OAuth/OIDC implementation, API key management, and fine-grained access control." },
+          { label: "Rate Limiting & Throttling", desc: "API abuse prevention through request rate limits, throttling policies, and quota management." },
+          { label: "Input Validation & Schema Enforcement", desc: "Request/response schema validation, payload size limits, and type enforcement." },
+          { label: "API Threat Modeling", desc: "API-specific threat analysis including BOLA, BFLA, and OWASP API Security Top 10." },
+          { label: "API Gateway Security", desc: "Centralized API gateway policies, TLS termination, request transformation, and logging." },
+        ] },
+        { id: "as6", label: "Web Application Defense", desc: "WAF management, application vulnerability testing, DDoS protection, bot management, and OWASP Top 10 coverage." },
+        { id: "as7", label: "Mobile App Security", desc: "Mobile SAST/DAST, secure local storage, certificate pinning, app store security review, and jailbreak/root detection." },
+        { id: "as8", label: "Container & Cloud-Native Security", desc: "Container image scanning, runtime protection, Kubernetes security policies, service mesh security, and serverless hardening." },
+        { id: "as9", label: "Open Source & SCA", desc: "OSS component inventory, software composition analysis, license compliance, public repo security, and dependency tracking." },
+        { id: "as10", label: "Secrets Management", desc: "Secrets detection in source code, vault integration, credential rotation policies, and certificate lifecycle management." },
+        { id: "as11", label: "Development Environment Security", desc: "Development toolchain integrity, build system security, code repository hardening, developer endpoint protection, and artifact registry security." },
       ],
     },
     {
       id: "business", label: "Business\nEnablement", color: "#84CC16", icon: "🚀",
       children: [
-        { id: "be1", label: "Cloud Strategy", desc: "Multi-cloud architecture, SaaS policy, vendor evaluation, SLAs, cloud log integration, and cloud-native posture." },
-        { id: "be2", label: "M&A Security", desc: "Acquisition risk assessment, integration cost, IAM integration, security tools rationalization, and posture alignment." },
-        { id: "be3", label: "IoT & Emerging Tech", desc: "IoT frameworks, device security, protocols, device identity, OTA updates, edge computing, and quantum planning." },
-        { id: "be4", label: "Mobile & Remote Work", desc: "BYOD/MDM, mobile app inventory, secure remote access, attack surface management, and zero trust for distributed workforce." },
-        { id: "be5", label: "Agility & Resilience", desc: "BC/DR, industry trend analysis, emerging tech evaluation, and digital transformation security enablement." },
+        { id: "be1", label: "Cloud Strategy", desc: "Multi-cloud architecture, SaaS policy, vendor evaluation, SLAs, cloud log integration, and cloud-native posture management." },
+        { id: "be2", label: "M&A Security", desc: "Acquisition risk assessment, integration cost estimation, IAM integration, security tools rationalization, and posture alignment." },
+        { id: "be3", label: "IoT & Emerging Tech", desc: "IoT security frameworks, device security, protocols, device identity, OTA updates, edge computing, and quantum readiness." },
+        { id: "be4", label: "Mobile & Remote Work", desc: "BYOD/MDM policies, mobile app inventory, secure remote access, attack surface management, and zero trust for distributed workforce." },
+        { id: "be5", label: "Agility & Resilience", desc: "BC/DR planning, industry trend analysis, emerging technology evaluation, and digital transformation security enablement." },
+        { id: "be6", label: "Customer Trust & Assurance", desc: "Trust center/portal, customer-facing security documentation, audit support packages, and transparency reporting." },
+        { id: "be7", label: "Product Security", desc: "Security in product development lifecycle, customer-facing security features, and product vulnerability disclosure programs." },
+        { id: "be8", label: "Security as Revenue Enabler", desc: "Sales enablement support, RFP/questionnaire management, competitive differentiation, and security certifications as deal accelerators." },
       ],
     },
     {
       id: "team", label: "Team & Culture\nManagement", color: "#D946EF", icon: "👥",
       children: [
-        { id: "tm1", label: "Security Culture", desc: "Role-based training, phishing simulations, security champions, awareness campaigns, culture metrics, and service-oriented mindset." },
-        { id: "tm2", label: "Talent & Retention", desc: "Recruiting, performance, retention, burnout prevention, FTE/contractor balance, and continuous skills development." },
-        { id: "tm3", label: "Budget & Program Mgmt", desc: "Budget management, business case development, CapEx/OpEx, technology amortization, tool rationalization, consulting." },
-        { id: "tm4", label: "Skills Development", desc: "ML/AI skills, DevOps integration, MITRE ATT&CK, soft skills, IoT/OT expertise, and cross-training." },
-        { id: "tm5", label: "Trust Culture", desc: "Internal transparency, open security reporting, blameless culture, security brand building, and trust values for stakeholders." },
+        { id: "tm1", label: "Security Awareness & Training", desc: "Role-based security training, phishing simulations, awareness campaigns, culture metrics, and new hire onboarding.", children: [
+          { label: "Role-Based Training", desc: "Tailored training programs for developers, executives, IT ops, and general staff based on role-specific risks." },
+          { label: "Phishing Simulations", desc: "Regular phishing campaigns with progressive difficulty, targeted simulations, and remedial training." },
+          { label: "Awareness Campaigns", desc: "Ongoing security awareness initiatives, security month events, newsletters, and gamification." },
+          { label: "Culture Metrics", desc: "Measurement of security culture health through surveys, phishing click rates, and reporting rates." },
+          { label: "New Hire Security Onboarding", desc: "Security orientation for all new employees covering policies, tools, and reporting." },
+          { label: "Executive Security Briefings", desc: "Tailored security updates for executives covering threat landscape, risk posture, and strategic initiatives." },
+        ] },
+        { id: "tm2", label: "Security Champions Program", desc: "Champion recruitment and selection, training curriculum, office hours, cross-team advocacy, and recognition programs." },
+        { id: "tm3", label: "Talent & Retention", desc: "Recruiting pipeline, performance management, retention strategies, burnout prevention, and FTE/contractor balance." },
+        { id: "tm4", label: "Budget & Program Management", desc: "Budget management, business case development, CapEx/OpEx planning, tool rationalization, and consulting engagement." },
+        { id: "tm5", label: "Skills Development", desc: "ML/AI skills, DevOps integration, MITRE ATT&CK proficiency, soft skills, IoT/OT expertise, and cross-training." },
+        { id: "tm6", label: "Trust Culture", desc: "Internal transparency practices, open security reporting, blameless culture, security brand building, and trust values." },
+        { id: "tm7", label: "Organizational Design", desc: "CISO reporting structure, team structure (centralized/federated/hybrid), RACI for security functions, and career pathing." },
+        { id: "tm8", label: "Stakeholder Engagement", desc: "Executive relationship management, business unit partnerships, cross-functional working groups, and communication cadence." },
       ],
     },
   ],
@@ -144,23 +265,23 @@ const DEP_EDGES = [
   ["so1", "rm4", "OT/ICS environments need adapted prevention controls — standard IT controls don't translate directly."],
   ["so1", "be4", "Remote work and BYOD expand the prevention perimeter — endpoint security must extend to uncontrolled devices."],
   ["so1", "tm1", "Awareness training is itself a prevention control — phishing-resistant users reduce the attack surface."],
-  ["so1", "tm2", "Prevention tools require trained operators to configure, tune, and maintain them effectively."],
+  ["so1", "tm3", "Prevention tools require trained operators to configure, tune, and maintain them effectively."],
   ["so1", "so5", "Automated patching and hardening are prevention activities driven by the automation and analytics function."],
   ["so1", "so2", "Vulnerability findings drive prevention priorities — known exploited vulns trigger urgent hardening and blocking."],
-  ["so1", "as4", "WAF is both an application defense and a threat prevention control for web-facing attack surfaces."],
+  ["so1", "as6", "WAF is both an application defense and a threat prevention control for web-facing attack surfaces."],
 
   // ===== SO2: Vulnerability Management =====
   ["so2", "sc2", "SBOM and dependency scanning reveal supply chain vulnerabilities that internal scanning alone cannot find."],
-  ["so2", "as5", "SCA findings from open-source components are a primary input to the vulnerability pipeline."],
+  ["so2", "as9", "SCA findings from open-source components are a primary input to the vulnerability pipeline."],
   ["so2", "as1", "SAST/DAST findings from secure development feed directly into vulnerability tracking and remediation."],
-  ["so2", "as3", "API-specific vulnerabilities must be discovered and tracked through the vuln management process."],
+  ["so2", "as5", "API-specific vulnerabilities must be discovered and tracked through the vuln management process."],
   ["so2", "sa4", "Vulnerability findings feed into the Secure SDLC to fix flaws before production deployment."],
   ["so2", "gv2", "Framework requirements define scanning scope, frequency, and remediation SLAs for vulnerability management."],
   ["so2", "gv3", "Policies define remediation timelines, risk acceptance criteria, and exception handling for vulnerabilities."],
   ["so2", "rm1", "Risk scoring and CRQ prioritize which vulnerabilities matter most — not all vulns are equal."],
   ["so2", "so5", "Automated scanning, ticket creation, and patching workflows are driven by the automation function."],
-  ["so2", "tm2", "Vuln management requires dedicated staff to triage, validate, and drive remediation across teams."],
-  ["so2", "tm4", "New vulnerability types (AI, IoT, OT) require new skills that the vuln management team must develop."],
+  ["so2", "tm3", "Vuln management requires dedicated staff to triage, validate, and drive remediation across teams."],
+  ["so2", "tm5", "New vulnerability types (AI, IoT, OT) require new skills that the vuln management team must develop."],
   ["so2", "be1", "Cloud vulnerability scanning requires cloud-specific tools and integration with CSPM capabilities."],
   ["so2", "be3", "IoT device vulnerabilities need specialized scanning and firmware analysis capabilities."],
   ["so2", "rm4", "OT/ICS vulnerabilities have unique scanning constraints — active scanning can crash industrial systems."],
@@ -170,8 +291,8 @@ const DEP_EDGES = [
   // ===== SO3: Threat Detection & SOC =====
   ["so3", "so5", "SOAR automation, AI-augmented triage, and automated hunting are force multipliers for detection."],
   ["so3", "ai6", "AI-enabled detection models power anomaly detection, behavioral analysis, and automated alert triage."],
-  ["so3", "tm2", "SOC operations live and die on analyst staffing — burnout, gaps, and skill levels directly impact detection."],
-  ["so3", "tm4", "Analysts need continuous skills development — MITRE ATT&CK proficiency, ML understanding, and threat intel skills."],
+  ["so3", "tm3", "SOC operations live and die on analyst staffing — burnout, gaps, and skill levels directly impact detection."],
+  ["so3", "tm5", "Analysts need continuous skills development — MITRE ATT&CK proficiency, ML understanding, and threat intel skills."],
   ["so3", "ia4", "PAM monitoring and privileged session recording are critical detection inputs for insider threat."],
   ["so3", "ia5", "Zero trust identity signals (impossible travel, anomalous access) feed SOC detection rules."],
   ["so3", "sa2", "Defense-in-depth determines where detection sensors sit — network taps, host agents, and cloud logging points."],
@@ -181,14 +302,14 @@ const DEP_EDGES = [
   ["so3", "so2", "Vulnerability context enriches alerts — a detection on an unpatched system is higher severity."],
   ["so3", "be1", "Cloud environments generate unique log sources that SOC must ingest and write detections for."],
   ["so3", "rm4", "OT/ICS monitoring requires specialized detection capabilities and understanding of industrial protocols."],
-  ["so3", "tm3", "SOC tooling (SIEM, EDR, NDR) is a major budget line item managed through program budgeting."],
-  ["so3", "as4", "Web application attack detection (WAF logs, bot detection) feeds into SOC correlation."],
+  ["so3", "tm4", "SOC tooling (SIEM, EDR, NDR) is a major budget line item managed through program budgeting."],
+  ["so3", "as6", "Web application attack detection (WAF logs, bot detection) feeds into SOC correlation."],
   ["so3", "dp1", "Data classification context tells the SOC whether a detected exfiltration involves sensitive data or not."],
 
   // ===== SO4: Offensive Security =====
   ["so4", "rm1", "Offensive findings are primary inputs to risk assessments — they reveal real exploitability."],
-  ["so4", "tm4", "Red teamers need continuous skills development in emerging TTPs, tools, and attack techniques."],
-  ["so4", "tm2", "Offensive security requires specialized, hard-to-recruit talent — retention is critical."],
+  ["so4", "tm5", "Red teamers need continuous skills development in emerging TTPs, tools, and attack techniques."],
+  ["so4", "tm3", "Offensive security requires specialized, hard-to-recruit talent — retention is critical."],
   ["so4", "gv3", "Engagement scoping, rules of engagement, and authorization are defined by organizational policies."],
   ["so4", "sa1", "Offensive testing validates zero trust architecture — can attackers move laterally despite segmentation?"],
   ["so4", "sa2", "Pen tests validate defense-in-depth — each layer's effectiveness is only proven under real attack simulation."],
@@ -198,8 +319,8 @@ const DEP_EDGES = [
   ["so4", "so3", "Red team exercises test SOC detection — if the SOC can't detect the red team, there are gaps."],
   ["so4", "ir1", "Offensive exercises test IR capability — tabletops and live simulations validate response readiness."],
   ["so4", "rm4", "Physical security and OT pen testing require specialized skills and safety-conscious methodologies."],
-  ["so4", "as3", "API penetration testing validates API security controls — authentication, authorization, input validation."],
-  ["so4", "as4", "Web application pen testing validates WAF effectiveness and application-layer defenses."],
+  ["so4", "as5", "API penetration testing validates API security controls — authentication, authorization, input validation."],
+  ["so4", "as6", "Web application pen testing validates WAF effectiveness and application-layer defenses."],
   ["so4", "ai4", "AI red teaming tests AI system defenses — adversarial prompts, model extraction, and data poisoning."],
   ["so4", "sc1", "Third-party security is validated through offensive testing of vendor integrations and shared environments."],
   ["so4", "be3", "IoT device pen testing reveals firmware vulnerabilities and hardware attack surfaces."],
@@ -208,26 +329,26 @@ const DEP_EDGES = [
   // ===== SO5: Automation & Analytics =====
   ["so5", "ai6", "AI/ML models power intelligent automation — from alert triage to automated threat hunting."],
   ["so5", "gv4", "Automated metrics collection feeds board reporting and control effectiveness measurement."],
-  ["so5", "tm4", "Building and maintaining automation requires DevOps, scripting, and ML engineering skills."],
-  ["so5", "tm2", "Automation strategy and tooling need dedicated engineering staff to build and maintain."],
+  ["so5", "tm5", "Building and maintaining automation requires DevOps, scripting, and ML engineering skills."],
+  ["so5", "tm3", "Automation strategy and tooling need dedicated engineering staff to build and maintain."],
   ["so5", "sa3", "Cloud-native automation leverages cloud APIs, IaC, and serverless functions for security orchestration."],
   ["so5", "gv3", "Automation encodes policy — playbooks must accurately reflect organizational standards and procedures."],
   ["so5", "rm2", "Automated compliance checks validate control configurations against regulatory requirements continuously."],
-  ["so5", "as2", "DevSecOps pipelines are security automation — CI/CD security tooling shares infrastructure with SOAR."],
-  ["so5", "tm3", "Automation tooling (SOAR, scripts, ML infrastructure) is a budget-managed capability."],
+  ["so5", "as3", "DevSecOps pipelines are security automation — CI/CD security tooling shares infrastructure with SOAR."],
+  ["so5", "tm4", "Automation tooling (SOAR, scripts, ML infrastructure) is a budget-managed capability."],
 
   // ===== IR1: IR Capability & Playbooks =====
   ["ir1", "so3", "Incident detection triggers come from the SOC — without detection, there is nothing to respond to."],
-  ["ir1", "tm2", "IR capability depends on trained, available responders — staffing gaps mean slower containment."],
+  ["ir1", "tm3", "IR capability depends on trained, available responders — staffing gaps mean slower containment."],
   ["ir1", "rm1", "Risk assessments prioritize which systems get playbooks and define acceptable response SLAs."],
   ["ir1", "gv3", "IR policies define authority, escalation paths, and decision-making rights during incidents."],
   ["ir1", "gv2", "Frameworks (NIST CSF Respond/Recover) define IR capability requirements and maturity expectations."],
   ["ir1", "rm3", "Legal counsel is embedded in IR — privilege considerations, evidence preservation, and regulatory obligations."],
-  ["ir1", "tm4", "IR skills require continuous development — forensics, malware analysis, and cloud IR techniques evolve rapidly."],
+  ["ir1", "tm5", "IR skills require continuous development — forensics, malware analysis, and cloud IR techniques evolve rapidly."],
   ["ir1", "so4", "Offensive exercises (tabletops, live simulations) test and validate IR playbook effectiveness."],
   ["ir1", "ia4", "Incident containment often requires emergency privileged access — PAM must support break-glass procedures."],
   ["ir1", "so5", "SOAR playbooks automate IR workflows — automated containment, ticket creation, and evidence collection."],
-  ["ir1", "sc5", "Supply chain incident playbooks must integrate with broader IR capability for vendor-triggered events."],
+  ["ir1", "sc8", "Supply chain incident playbooks must integrate with broader IR capability for vendor-triggered events."],
   ["ir1", "sa5", "Recovery playbooks depend on resilient architecture — backup locations, failover procedures, and restore sequences."],
 
   // ===== IR2: Ransomware Resilience =====
@@ -244,41 +365,41 @@ const DEP_EDGES = [
   ["ir2", "rm1", "Ransomware risk must be quantified in the risk register with business impact and likelihood."],
 
   // ===== IR3: Stakeholder Communication =====
-  ["ir3", "gv5", "Communication credibility is built on pre-existing trust commitments and transparency culture."],
-  ["ir3", "ir4", "Regulatory notification timelines constrain when and how stakeholders can be informed."],
-  ["ir3", "gv4", "Board reporting infrastructure enables rapid escalation and accurate impact communication."],
-  ["ir3", "rm3", "Legal review is mandatory for external communications — privilege, liability, and regulatory language."],
-  ["ir3", "gv3", "Communication policies define who speaks, when, through what channels, and with what approvals."],
-  ["ir3", "ir1", "Communication is only as good as the IR team's understanding of the incident — forensic findings drive messaging."],
-  ["ir3", "tm5", "Trust culture determines whether internal teams share information freely or hide problems."],
-  ["ir3", "dp3", "If a breach involves personal data, consent and rights management informs how affected individuals are notified."],
-  ["ir3", "sc4", "When vendor incidents impact your organization, vendor transparency reporting quality determines communication speed."],
+  ["ir4", "gv5", "Communication credibility is built on pre-existing trust commitments and transparency culture."],
+  ["ir4", "ir5", "Regulatory notification timelines constrain when and how stakeholders can be informed."],
+  ["ir4", "gv4", "Board reporting infrastructure enables rapid escalation and accurate impact communication."],
+  ["ir4", "rm3", "Legal review is mandatory for external communications — privilege, liability, and regulatory language."],
+  ["ir4", "gv3", "Communication policies define who speaks, when, through what channels, and with what approvals."],
+  ["ir4", "ir1", "Communication is only as good as the IR team's understanding of the incident — forensic findings drive messaging."],
+  ["ir4", "tm6", "Trust culture determines whether internal teams share information freely or hide problems."],
+  ["ir4", "dp3", "If a breach involves personal data, consent and rights management informs how affected individuals are notified."],
+  ["ir4", "sc7", "When vendor incidents impact your organization, vendor transparency reporting quality determines communication speed."],
 
   // ===== IR4: Regulatory Notification =====
-  ["ir4", "rm2", "Compliance requirements define notification timelines — HIPAA, GDPR 72-hour, SEC, DORA, state AG."],
-  ["ir4", "rm3", "Legal counsel guides notification language, privilege considerations, and multi-jurisdiction obligations."],
-  ["ir4", "dp1", "Data governance determines what data was affected — classification drives regulatory obligation assessment."],
-  ["ir4", "dp4", "Cross-border data flow mapping determines which jurisdictions' notification rules apply."],
-  ["ir4", "gv2", "Framework requirements define notification obligations and documentation standards."],
-  ["ir4", "ir1", "Forensic findings from IR determine the scope, nature, and timing of regulatory notifications."],
+  ["ir5", "rm2", "Compliance requirements define notification timelines — HIPAA, GDPR 72-hour, SEC, DORA, state AG."],
+  ["ir5", "rm3", "Legal counsel guides notification language, privilege considerations, and multi-jurisdiction obligations."],
+  ["ir5", "dp1", "Data governance determines what data was affected — classification drives regulatory obligation assessment."],
+  ["ir5", "dp4", "Cross-border data flow mapping determines which jurisdictions' notification rules apply."],
+  ["ir5", "gv2", "Framework requirements define notification obligations and documentation standards."],
+  ["ir5", "ir1", "Forensic findings from IR determine the scope, nature, and timing of regulatory notifications."],
 
   // ===== IR5: Post-Incident Transparency =====
-  ["ir5", "tm5", "Blameless retrospectives only work in trust cultures — without psychological safety, people hide information."],
-  ["ir5", "gv5", "Public postmortems are a direct expression of the organization's trust and transparency commitment."],
-  ["ir5", "ir1", "Post-incident analysis depends on thorough forensic investigation and documented response actions."],
-  ["ir5", "gv4", "Lessons-learned findings feed metrics and board reporting — was risk reduced after remediation?"],
-  ["ir5", "so2", "Post-incident vulnerability remediation feeds back into the vulnerability management pipeline."],
-  ["ir5", "so3", "Detection gaps revealed during incidents drive SOC detection rule improvements and tuning."],
-  ["ir5", "gv3", "Policy gaps identified during incidents trigger policy updates and new standards."],
-  ["ir5", "sa2", "Architecture weaknesses found in incidents drive defense-in-depth improvements."],
-  ["ir5", "sc5", "Supply chain incident postmortems reveal vendor transparency gaps and contractual shortcomings."],
+  ["ir6", "tm6", "Blameless retrospectives only work in trust cultures — without psychological safety, people hide information."],
+  ["ir6", "gv5", "Public postmortems are a direct expression of the organization's trust and transparency commitment."],
+  ["ir6", "ir1", "Post-incident analysis depends on thorough forensic investigation and documented response actions."],
+  ["ir6", "gv4", "Lessons-learned findings feed metrics and board reporting — was risk reduced after remediation?"],
+  ["ir6", "so2", "Post-incident vulnerability remediation feeds back into the vulnerability management pipeline."],
+  ["ir6", "so3", "Detection gaps revealed during incidents drive SOC detection rule improvements and tuning."],
+  ["ir6", "gv3", "Policy gaps identified during incidents trigger policy updates and new standards."],
+  ["ir6", "sa2", "Architecture weaknesses found in incidents drive defense-in-depth improvements."],
+  ["ir6", "sc8", "Supply chain incident postmortems reveal vendor transparency gaps and contractual shortcomings."],
 
   // ===== IA1: Identity Lifecycle =====
   ["ia1", "gv3", "Identity policies define who gets access to what, provisioning/deprovisioning rules, and access governance."],
   ["ia1", "rm3", "Legal and HR requirements shape identity lifecycle — data retention, regulatory obligations, and employment law."],
   ["ia1", "rm2", "Compliance frameworks mandate access reviews, certification cycles, and identity audit trails."],
   ["ia1", "be2", "M&A events trigger massive identity integration projects — merging directories is day-one critical."],
-  ["ia1", "tm3", "IAM platform licensing, staffing, and tooling are budget-managed capabilities."],
+  ["ia1", "tm4", "IAM platform licensing, staffing, and tooling are budget-managed capabilities."],
   ["ia1", "dp1", "Data governance determines which identity attributes are collected, retained, and how long they're kept."],
   ["ia1", "sa3", "Cloud identity management must federate across multi-cloud environments with consistent lifecycle rules."],
 
@@ -303,7 +424,7 @@ const DEP_EDGES = [
   ["ia4", "rm1", "Privileged access scope is defined by risk assessments — which accounts are critical, which need JIT."],
   ["ia4", "gv3", "PAM policies define JIT rules, approval workflows, session recording requirements, and break-glass procedures."],
   ["ia4", "rm2", "Compliance frameworks mandate PAM controls — PCI requires restricted admin access, SOX mandates audit trails."],
-  ["ia4", "as3", "API secrets management is a PAM function — API keys, tokens, and service accounts need privileged handling."],
+  ["ia4", "as5", "API secrets management is a PAM function — API keys, tokens, and service accounts need privileged handling."],
   ["ia4", "ai5", "AI agents with system access need PAM — agentic AI credentials must be scoped, rotated, and monitored."],
   ["ia4", "sa3", "Cloud environments create unique privileged access challenges — cloud admin consoles, IaC credentials, and API keys."],
 
@@ -320,7 +441,7 @@ const DEP_EDGES = [
   // ===== GV1: Strategy & Alignment =====
   ["gv1", "rm1", "Strategy must be informed by actual risk posture — quantified cyber risk drives strategic priorities."],
   ["gv1", "gv4", "Metrics validate whether strategy is working — without measurement, alignment is aspirational."],
-  ["gv1", "tm3", "Strategy execution requires budget — unfunded strategies are just wishes."],
+  ["gv1", "tm4", "Strategy execution requires budget — unfunded strategies are just wishes."],
   ["gv1", "gv2", "Framework selection shapes the strategic roadmap — the chosen framework defines what 'good' looks like."],
   ["gv1", "be5", "Business resilience requirements shape security strategy — the strategy must enable business objectives."],
   ["gv1", "gv5", "Trust commitments must be baked into strategy — not bolted on as an afterthought."],
@@ -340,17 +461,17 @@ const DEP_EDGES = [
   ["gv4", "so5", "Automated tooling provides raw data for executive metrics aggregation."],
   ["gv4", "rm1", "CRQ and FAIR outputs directly feed board-level risk metrics — dollars at risk, loss exposure."],
   ["gv4", "gv1", "Metrics must measure strategic progress — KPIs aligned to the security strategy roadmap."],
-  ["gv4", "tm3", "Budget justification requires ROI metrics — metrics demonstrate program value to leadership."],
+  ["gv4", "tm4", "Budget justification requires ROI metrics — metrics demonstrate program value to leadership."],
   ["gv4", "rm2", "Audit findings and compliance posture are core board metrics."],
   ["gv4", "so2", "Vulnerability metrics (mean time to remediate, SLA adherence) are fundamental operational metrics."],
   ["gv4", "so3", "SOC metrics (MTTR, MTTD, alert volume) are primary operational health indicators."],
 
   // ===== GV5: Trust as Corporate Value =====
-  ["gv5", "ir3", "Trust is tested in crisis — stakeholder communication during incidents is the ultimate trust test."],
-  ["gv5", "tm5", "External trust commitments ring hollow without internal culture that practices transparency."],
+  ["gv5", "ir4", "Trust is tested in crisis — stakeholder communication during incidents is the ultimate trust test."],
+  ["gv5", "tm6", "External trust commitments ring hollow without internal culture that practices transparency."],
   ["gv5", "dp5", "Data ethics commitments are foundational to credible trust and transparency programs."],
-  ["gv5", "sc4", "Vendor transparency reporting demonstrates supply chain trust commitment to customers."],
-  ["gv5", "ir5", "Public postmortems are a tangible trust artifact — they show accountability in action."],
+  ["gv5", "sc7", "Vendor transparency reporting demonstrates supply chain trust commitment to customers."],
+  ["gv5", "ir6", "Public postmortems are a tangible trust artifact — they show accountability in action."],
   ["gv5", "ai2", "Responsible AI is a trust commitment — opaque AI undermines stakeholder confidence."],
   ["gv5", "gv4", "Trust metrics must be measured and reported — trust without measurement is just marketing."],
   ["gv5", "gv1", "Trust must be a strategic priority, not a tactical afterthought — it requires leadership commitment."],
@@ -374,7 +495,7 @@ const DEP_EDGES = [
   ["rm2", "ia1", "Access reviews and identity governance are primary audit focus areas across all frameworks."],
   ["rm2", "dp2", "Privacy engineering controls (PIAs, data minimization) are audited under GDPR, CCPA, and HIPAA."],
   ["rm2", "rm3", "Legal counsel interprets regulatory requirements and advises on compliance strategy."],
-  ["rm2", "tm3", "Audit preparation and remediation consume budget — external auditors, tools, and staff time."],
+  ["rm2", "tm4", "Audit preparation and remediation consume budget — external auditors, tools, and staff time."],
 
   // ===== RM3: Legal & Data Governance =====
   ["rm3", "dp1", "Legal data governance depends on knowing what data exists, where it lives, and who owns it."],
@@ -389,7 +510,7 @@ const DEP_EDGES = [
   ["rm4", "be3", "IoT proliferation expands the OT attack surface — converged risk management is required."],
   ["rm4", "so3", "OT monitoring requires specialized detection — industrial protocols and safety system alerting."],
   ["rm4", "so2", "OT vulnerability management has unique constraints — patching may require production downtime."],
-  ["rm4", "tm4", "OT security requires specialized skills — Purdue model, industrial protocols, and safety system knowledge."],
+  ["rm4", "tm5", "OT security requires specialized skills — Purdue model, industrial protocols, and safety system knowledge."],
   ["rm4", "sa2", "OT network segmentation (IT/OT boundary) is a critical defense-in-depth design decision."],
   ["rm4", "gv3", "OT security policies must balance cybersecurity requirements with safety and operational continuity."],
 
@@ -408,7 +529,7 @@ const DEP_EDGES = [
   ["sa1", "ia2", "Strong authentication is a prerequisite — zero trust fails without continuous identity verification."],
   ["sa1", "sa2", "Zero trust builds on defense-in-depth — micro-segmentation layers on top of network segmentation."],
   ["sa1", "be4", "Remote/mobile work is a primary zero trust driver — distributed workforce needs identity-centric access."],
-  ["sa1", "tm3", "SASE/SSE platform investments are major capital expenditures requiring budget approval."],
+  ["sa1", "tm4", "SASE/SSE platform investments are major capital expenditures requiring budget approval."],
   ["sa1", "be1", "Cloud-first strategies accelerate zero trust adoption — SASE converges networking and security for cloud."],
 
   // ===== SA2: Defense-in-Depth =====
@@ -426,7 +547,7 @@ const DEP_EDGES = [
   ["sa3", "ia4", "Cloud admin consoles and IaC credentials are privileged access that PAM must govern."],
 
   // ===== SA4: Secure SDLC =====
-  ["sa4", "as2", "Secure SDLC is operationalized through DevSecOps pipeline integration — tooling in CI/CD."],
+  ["sa4", "as3", "Secure SDLC is operationalized through DevSecOps pipeline integration — tooling in CI/CD."],
   ["sa4", "as1", "SDLC security starts with secure development practices — code review, SAST, and training."],
   ["sa4", "gv3", "SDLC policies define security requirements at each development phase — design, build, test, deploy."],
   ["sa4", "rm1", "Threat modeling during design is a risk assessment activity applied to specific applications."],
@@ -440,7 +561,7 @@ const DEP_EDGES = [
   ["sa5", "ir2", "Ransomware recovery depends on resilient architecture — backup integrity and failover capability."],
   ["sa5", "gv1", "Resilience investment is a strategic decision — it requires leadership to prioritize availability."],
   ["sa5", "rm1", "BIA findings from risk assessment determine which systems need what level of resilience."],
-  ["sa5", "tm3", "Multi-site, replication, and backup infrastructure are significant budget items."],
+  ["sa5", "tm4", "Multi-site, replication, and backup infrastructure are significant budget items."],
 
   // ===== AI1: AI Governance & Policy =====
   ["ai1", "gv1", "AI governance must align with broader security and business strategy."],
@@ -456,7 +577,7 @@ const DEP_EDGES = [
   ["ai2", "ai1", "Ethical AI principles must be codified in governance policy before they can be operationalized."],
   ["ai2", "dp1", "Bias testing requires understanding training data lineage, classification, and representativeness."],
   ["ai2", "gv3", "Responsible AI standards need organizational policy backing to be enforceable."],
-  ["ai2", "tm4", "Teams need training on AI ethics, bias identification, and fairness testing methodologies."],
+  ["ai2", "tm5", "Teams need training on AI ethics, bias identification, and fairness testing methodologies."],
 
   // ===== AI3: Shadow AI & Inventory =====
   ["ai3", "ai1", "Shadow AI discovery is only meaningful with a governance framework to evaluate against."],
@@ -489,12 +610,12 @@ const DEP_EDGES = [
   ["ai5", "dp2", "Agents accessing personal data must respect privacy controls — purpose limitation and data minimization."],
 
   // ===== AI6: AI-Enabled Security =====
-  ["ai6", "tm4", "Security teams need ML/AI skills to operate, tune, and validate AI-enabled tools."],
+  ["ai6", "tm5", "Security teams need ML/AI skills to operate, tune, and validate AI-enabled tools."],
   ["ai6", "so3", "AI augments SOC operations — it depends on existing detection infrastructure and data feeds."],
-  ["ai6", "tm2", "AI tooling shifts skill requirements — hiring profiles must evolve for AI-augmented operations."],
+  ["ai6", "tm3", "AI tooling shifts skill requirements — hiring profiles must evolve for AI-augmented operations."],
   ["ai6", "so5", "AI-enabled security is a form of automation — it shares infrastructure with SOAR."],
   ["ai6", "ai4", "AI security tools must themselves be secured — they're AI systems subject to adversarial attack."],
-  ["ai6", "tm3", "AI/ML security tooling is a significant budget item — licensing, compute, and talent."],
+  ["ai6", "tm4", "AI/ML security tooling is a significant budget item — licensing, compute, and talent."],
   ["ai6", "gv4", "AI tool effectiveness must be measured — false positive rates, detection improvements, and ROI."],
 
   // ===== SC1: Third-Party Risk (TPRM) =====
@@ -508,34 +629,34 @@ const DEP_EDGES = [
   ["sc1", "dp1", "Data governance determines what data vendors access — classification drives assessment rigor."],
 
   // ===== SC2: Software Supply Chain =====
-  ["sc2", "as5", "SCA is the technical mechanism enabling SBOM generation and dependency vulnerability tracking."],
+  ["sc2", "as9", "SCA is the technical mechanism enabling SBOM generation and dependency vulnerability tracking."],
   ["sc2", "so2", "Supply chain vulnerabilities flow into the vulnerability management prioritization pipeline."],
-  ["sc2", "as2", "SBOM generation is integrated into DevSecOps pipelines — build-time dependency analysis."],
+  ["sc2", "as3", "SBOM generation is integrated into DevSecOps pipelines — build-time dependency analysis."],
   ["sc2", "gv3", "Supply chain security policies define SBOM requirements, approved sources, and provenance standards."],
   ["sc2", "rm1", "Supply chain risk must be quantified — compromised dependencies can have outsized blast radius."],
   ["sc2", "ai4", "AI model supply chains need the same rigor — pre-trained models and training datasets."],
 
   // ===== SC3: Concentration & 4th Party =====
-  ["sc3", "sc1", "Fourth-party analysis extends TPRM — solid Tier 1 assessments are prerequisite."],
-  ["sc3", "be5", "Concentration risk directly threatens resilience — single vendor failure can cascade."],
-  ["sc3", "be1", "Cloud provider concentration is a critical risk — multi-cloud strategy mitigates it."],
-  ["sc3", "rm1", "Concentration risk must be in the risk register with scenario analysis."],
-  ["sc3", "sa5", "Resilient design must account for vendor concentration — architecture should support vendor failover."],
+  ["sc5", "sc1", "Fourth-party analysis extends TPRM — solid Tier 1 assessments are prerequisite."],
+  ["sc5", "be5", "Concentration risk directly threatens resilience — single vendor failure can cascade."],
+  ["sc5", "be1", "Cloud provider concentration is a critical risk — multi-cloud strategy mitigates it."],
+  ["sc5", "rm1", "Concentration risk must be in the risk register with scenario analysis."],
+  ["sc5", "sa5", "Resilient design must account for vendor concentration — architecture should support vendor failover."],
 
   // ===== SC4: Vendor Transparency =====
-  ["sc4", "gv5", "Vendor transparency is a direct manifestation of trust-as-corporate-value commitment."],
-  ["sc4", "sc1", "Published vendor standards require TPRM data — can't report on what hasn't been assessed."],
-  ["sc4", "dp1", "Data flow disclosures require data governance — understanding what data goes where."],
-  ["sc4", "dp4", "Subprocessor lists and data flow disclosures must include cross-border transfer information."],
-  ["sc4", "rm2", "Transparency reporting often responds to customer compliance requirements — SOC 2, HIPAA, etc."],
+  ["sc7", "gv5", "Vendor transparency is a direct manifestation of trust-as-corporate-value commitment."],
+  ["sc7", "sc1", "Published vendor standards require TPRM data — can't report on what hasn't been assessed."],
+  ["sc7", "dp1", "Data flow disclosures require data governance — understanding what data goes where."],
+  ["sc7", "dp4", "Subprocessor lists and data flow disclosures must include cross-border transfer information."],
+  ["sc7", "rm2", "Transparency reporting often responds to customer compliance requirements — SOC 2, HIPAA, etc."],
 
   // ===== SC5: Supply Chain Incidents =====
-  ["sc5", "ir1", "Supply chain IR uses the same playbook infrastructure and forensic capabilities."],
-  ["sc5", "sc2", "Responding to supply chain incidents requires knowing which components are affected (SBOM)."],
-  ["sc5", "sc1", "Vendor notification and coordination during incidents depends on established TPRM relationships."],
-  ["sc5", "ir3", "Supply chain incidents require stakeholder communication — customers need to know if they're affected."],
-  ["sc5", "so3", "Detection of supply chain compromises often comes through SOC anomaly detection."],
-  ["sc5", "so2", "Emergency vulnerability patching for supply chain incidents goes through vuln management."],
+  ["sc8", "ir1", "Supply chain IR uses the same playbook infrastructure and forensic capabilities."],
+  ["sc8", "sc2", "Responding to supply chain incidents requires knowing which components are affected (SBOM)."],
+  ["sc8", "sc1", "Vendor notification and coordination during incidents depends on established TPRM relationships."],
+  ["sc8", "ir4", "Supply chain incidents require stakeholder communication — customers need to know if they're affected."],
+  ["sc8", "so3", "Detection of supply chain compromises often comes through SOC anomaly detection."],
+  ["sc8", "so2", "Emergency vulnerability patching for supply chain incidents goes through vuln management."],
 
   // ===== DP1: Data Governance & Classification =====
   ["dp1", "rm3", "Data governance is jointly owned with legal — discovery, ownership, and retention are legal obligations."],
@@ -580,7 +701,7 @@ const DEP_EDGES = [
   ["dp5", "gv1", "Data ethics must be a strategic commitment, not just a policy checkbox."],
 
   // ===== AS1: Secure Development =====
-  ["as1", "tm4", "Secure coding requires trained developers — skills development feeds code quality."],
+  ["as1", "tm5", "Secure coding requires trained developers — skills development feeds code quality."],
   ["as1", "tm1", "Security culture determines whether developers embrace security or treat it as bureaucracy."],
   ["as1", "gv3", "Coding standards and security requirements are defined in organizational policy."],
   ["as1", "gv2", "Framework controls specify secure development requirements — NIST, CMMC, PCI-DSS."],
@@ -588,37 +709,37 @@ const DEP_EDGES = [
   ["as1", "sa4", "Secure development practices are integrated into the SDLC process."],
 
   // ===== AS2: DevSecOps Pipeline =====
-  ["as2", "as1", "DevSecOps automates secure development practices — the pipeline encodes the standards."],
-  ["as2", "so5", "DevSecOps leverages shared automation capabilities — CI/CD security shares infrastructure with SOAR."],
-  ["as2", "sc2", "SBOM generation and SCA are integrated into the build pipeline."],
-  ["as2", "gv3", "Pipeline security requirements and gate criteria are defined in policy."],
-  ["as2", "tm4", "Building and maintaining DevSecOps pipelines requires DevOps and security engineering skills."],
-  ["as2", "sa3", "Cloud-native CI/CD pipelines need cloud security architecture alignment."],
-  ["as2", "ai4", "ML pipeline security (model training, data ingestion) must be integrated into DevSecOps."],
+  ["as3", "as1", "DevSecOps automates secure development practices — the pipeline encodes the standards."],
+  ["as3", "so5", "DevSecOps leverages shared automation capabilities — CI/CD security shares infrastructure with SOAR."],
+  ["as3", "sc2", "SBOM generation and SCA are integrated into the build pipeline."],
+  ["as3", "gv3", "Pipeline security requirements and gate criteria are defined in policy."],
+  ["as3", "tm5", "Building and maintaining DevSecOps pipelines requires DevOps and security engineering skills."],
+  ["as3", "sa3", "Cloud-native CI/CD pipelines need cloud security architecture alignment."],
+  ["as3", "ai4", "ML pipeline security (model training, data ingestion) must be integrated into DevSecOps."],
 
   // ===== AS3: API Security =====
-  ["as3", "ia4", "API authentication and secrets management are PAM functions."],
-  ["as3", "so2", "API vulnerabilities must be tracked through vulnerability management."],
-  ["as3", "sa4", "API threat modeling is part of the Secure SDLC process."],
-  ["as3", "so3", "API abuse detection feeds into SOC correlation — anomalous call patterns, credential stuffing."],
-  ["as3", "gv3", "API security standards define authentication requirements, rate limits, and data exposure rules."],
-  ["as3", "dp2", "APIs handling PII must implement privacy engineering controls — data minimization in responses."],
-  ["as3", "as2", "API security testing is integrated into the DevSecOps pipeline."],
+  ["as5", "ia4", "API authentication and secrets management are PAM functions."],
+  ["as5", "so2", "API vulnerabilities must be tracked through vulnerability management."],
+  ["as5", "sa4", "API threat modeling is part of the Secure SDLC process."],
+  ["as5", "so3", "API abuse detection feeds into SOC correlation — anomalous call patterns, credential stuffing."],
+  ["as5", "gv3", "API security standards define authentication requirements, rate limits, and data exposure rules."],
+  ["as5", "dp2", "APIs handling PII must implement privacy engineering controls — data minimization in responses."],
+  ["as5", "as3", "API security testing is integrated into the DevSecOps pipeline."],
 
   // ===== AS4: Web Application Defense =====
-  ["as4", "so1", "WAF and DDoS protection are threat prevention controls at the application layer."],
-  ["as4", "so3", "Web application attack logs feed SOC detection and correlation."],
-  ["as4", "so2", "Application vulnerability testing findings flow into vulnerability management."],
-  ["as4", "sa2", "WAF is a defense-in-depth layer — application-level protection complements network controls."],
-  ["as4", "gv3", "WAF rules and blocking policies must align with organizational security standards."],
-  ["as4", "tm2", "WAF tuning and management require dedicated, skilled staff."],
+  ["as6", "so1", "WAF and DDoS protection are threat prevention controls at the application layer."],
+  ["as6", "so3", "Web application attack logs feed SOC detection and correlation."],
+  ["as6", "so2", "Application vulnerability testing findings flow into vulnerability management."],
+  ["as6", "sa2", "WAF is a defense-in-depth layer — application-level protection complements network controls."],
+  ["as6", "gv3", "WAF rules and blocking policies must align with organizational security standards."],
+  ["as6", "tm3", "WAF tuning and management require dedicated, skilled staff."],
 
   // ===== AS5: Open Source & SCA =====
-  ["as5", "sc2", "SCA is the technical foundation for software supply chain visibility and SBOM generation."],
-  ["as5", "rm3", "Open-source license compliance is a legal obligation managed through data governance."],
-  ["as5", "as2", "SCA is integrated into DevSecOps pipelines — build-time dependency analysis."],
-  ["as5", "so2", "SCA findings feed the vulnerability management pipeline."],
-  ["as5", "gv3", "Policies define approved open-source components, license types, and exception criteria."],
+  ["as9", "sc2", "SCA is the technical foundation for software supply chain visibility and SBOM generation."],
+  ["as9", "rm3", "Open-source license compliance is a legal obligation managed through data governance."],
+  ["as9", "as3", "SCA is integrated into DevSecOps pipelines — build-time dependency analysis."],
+  ["as9", "so2", "SCA findings feed the vulnerability management pipeline."],
+  ["as9", "gv3", "Policies define approved open-source components, license types, and exception criteria."],
 
   // ===== BE1: Cloud Strategy =====
   ["be1", "sa3", "Cloud strategy execution depends on the right cloud security architecture."],
@@ -628,7 +749,7 @@ const DEP_EDGES = [
   ["be1", "gv1", "Cloud strategy must align with overall security and business strategy."],
   ["be1", "gv3", "Cloud policies define acceptable services, data residency, and configuration standards."],
   ["be1", "dp4", "Cloud region selection is a cross-border data flow decision."],
-  ["be1", "tm3", "Cloud security tooling, training, and migration costs are budget items."],
+  ["be1", "tm4", "Cloud security tooling, training, and migration costs are budget items."],
 
   // ===== BE2: M&A Security =====
   ["be2", "ia1", "Merging user directories is a day-one critical activity in any acquisition."],
@@ -636,12 +757,12 @@ const DEP_EDGES = [
   ["be2", "so2", "Acquisition targets need vulnerability assessment before network integration."],
   ["be2", "gv3", "M&A security policies define assessment requirements and integration standards."],
   ["be2", "sa3", "Cloud environment integration requires architecture alignment and security review."],
-  ["be2", "tm3", "M&A security integration costs (tooling, staff, remediation) must be budgeted."],
+  ["be2", "tm4", "M&A security integration costs (tooling, staff, remediation) must be budgeted."],
   ["be2", "sc1", "Acquired company's vendor relationships become your third-party risk."],
 
   // ===== BE3: IoT & Emerging Tech =====
   ["be3", "rm4", "IoT proliferation directly expands the OT/physical security risk surface."],
-  ["be3", "tm4", "Emerging tech requires new skills — IoT protocols, edge computing, quantum."],
+  ["be3", "tm5", "Emerging tech requires new skills — IoT protocols, edge computing, quantum."],
   ["be3", "ia5", "IoT device identity and attestation is a zero trust challenge."],
   ["be3", "so2", "IoT firmware vulnerabilities need specialized scanning and management."],
   ["be3", "sa2", "IoT devices need network segmentation to contain their risk."],
@@ -662,42 +783,42 @@ const DEP_EDGES = [
   ["be5", "ir2", "Ransomware resilience is a critical component of overall business continuity."],
   ["be5", "gv1", "Resilience priorities are set at the strategic level — leadership defines acceptable downtime."],
   ["be5", "rm1", "BIA and risk assessment determine which systems need what recovery time objectives."],
-  ["be5", "sc3", "Vendor concentration risk threatens resilience — single points of failure."],
+  ["be5", "sc5", "Vendor concentration risk threatens resilience — single points of failure."],
   ["be5", "ir1", "IR capability directly impacts resilience — faster response means faster recovery."],
-  ["be5", "tm3", "BC/DR infrastructure and testing programs are budget-managed items."],
+  ["be5", "tm4", "BC/DR infrastructure and testing programs are budget-managed items."],
 
   // ===== TM1: Security Culture =====
   ["tm1", "gv5", "Culture must embody trust values — awareness training should reinforce transparency."],
   ["tm1", "gv3", "Training content is derived from policies — culture programs operationalize policy."],
   ["tm1", "gv1", "Culture programs must align with strategic vision — what behaviors does leadership want to reinforce?"],
-  ["tm1", "tm3", "Training programs, platforms, and phishing simulations are budget items."],
-  ["tm1", "tm2", "Culture initiatives need champions — engaged staff who model security behavior."],
-  ["tm1", "tm5", "Trust culture and security culture are mutually reinforcing — you need both."],
+  ["tm1", "tm4", "Training programs, platforms, and phishing simulations are budget items."],
+  ["tm1", "tm3", "Culture initiatives need champions — engaged staff who model security behavior."],
+  ["tm1", "tm6", "Trust culture and security culture are mutually reinforcing — you need both."],
 
   // ===== TM2: Talent & Retention =====
-  ["tm2", "tm3", "Hiring, compensation, and retention costs are directly constrained by budget."],
-  ["tm2", "tm4", "Retention depends on growth — skills development is a key retention lever."],
-  ["tm2", "gv1", "Staffing plan must align with strategy — the roadmap determines what skills are needed."],
-  ["tm2", "tm5", "Trust culture creates psychological safety that retains talent — toxic cultures lose people."],
+  ["tm3", "tm4", "Hiring, compensation, and retention costs are directly constrained by budget."],
+  ["tm3", "tm5", "Retention depends on growth — skills development is a key retention lever."],
+  ["tm3", "gv1", "Staffing plan must align with strategy — the roadmap determines what skills are needed."],
+  ["tm3", "tm6", "Trust culture creates psychological safety that retains talent — toxic cultures lose people."],
 
   // ===== TM3: Budget & Program Mgmt =====
-  ["tm3", "gv1", "Budget allocation reflects strategic priorities — strategy determines where money flows."],
-  ["tm3", "gv4", "Budget justification requires metrics demonstrating program value and risk reduction."],
-  ["tm3", "rm1", "Risk quantification justifies budget — CRQ translates security investment into financial terms."],
+  ["tm4", "gv1", "Budget allocation reflects strategic priorities — strategy determines where money flows."],
+  ["tm4", "gv4", "Budget justification requires metrics demonstrating program value and risk reduction."],
+  ["tm4", "rm1", "Risk quantification justifies budget — CRQ translates security investment into financial terms."],
 
   // ===== TM4: Skills Development =====
-  ["tm4", "ai6", "AI-enabled security tools create new skill requirements for operating and tuning ML models."],
-  ["tm4", "gv1", "Skills roadmap must align with security strategy — train for where the program is going."],
-  ["tm4", "tm3", "Training, certifications, and development programs are budget items."],
-  ["tm4", "rm4", "OT security requires specialized training — industrial protocols and safety-critical systems."],
-  ["tm4", "tm2", "Skills development supports retention — people stay where they grow."],
+  ["tm5", "ai6", "AI-enabled security tools create new skill requirements for operating and tuning ML models."],
+  ["tm5", "gv1", "Skills roadmap must align with security strategy — train for where the program is going."],
+  ["tm5", "tm4", "Training, certifications, and development programs are budget items."],
+  ["tm5", "rm4", "OT security requires specialized training — industrial protocols and safety-critical systems."],
+  ["tm5", "tm3", "Skills development supports retention — people stay where they grow."],
 
   // ===== TM5: Trust Culture =====
-  ["tm5", "gv5", "Internal trust culture is the operational expression of external trust commitments."],
-  ["tm5", "ir5", "Blameless postmortems only happen with trust — psychological safety enables transparency."],
-  ["tm5", "tm1", "Trust culture builds on security culture — transparency requires people who care about security."],
-  ["tm5", "gv1", "Trust must be a strategic value, modeled by leadership and reinforced in every decision."],
-  ["tm5", "gv3", "Trust practices must be codified in policy — reporting protections, blameless investigation standards."],
+  ["tm6", "gv5", "Internal trust culture is the operational expression of external trust commitments."],
+  ["tm6", "ir6", "Blameless postmortems only happen with trust — psychological safety enables transparency."],
+  ["tm6", "tm1", "Trust culture builds on security culture — transparency requires people who care about security."],
+  ["tm6", "gv1", "Trust must be a strategic value, modeled by leadership and reinforced in every decision."],
+  ["tm6", "gv3", "Trust practices must be codified in policy — reporting protections, blameless investigation standards."],
 ];
 
 // ========== BUILD LOOKUP MAPS ==========
@@ -802,14 +923,14 @@ const STANDARDS_MAP = {
     { std: "DORA", ref: "Art. 11(1)-(6), Art. 12", note: "Business continuity policy including backup and recovery, restoration, and ICT business continuity testing." },
     { std: "NIST CSF 2.0", ref: "RC.RP, PR.DS-11", note: "Incident recovery plan execution and data backup maintenance." },
   ],
-  ir3: [
+  ir4: [
     { std: "NIST 800-53", ref: "IR-6, IR-7, IR-10", note: "Incident reporting, IR assistance (coordinated response), and integrated information security analysis team." },
     { std: "DORA", ref: "Art. 19, Art. 20", note: "Reporting of major ICT-related incidents to competent authorities and content/timelines for reporting." },
     { std: "GDPR", ref: "Art. 33, Art. 34", note: "Notification of personal data breach to supervisory authority (72hr) and communication to data subjects." },
     { std: "HIPAA", ref: "§164.308(a)(6)(ii), §164.404", note: "Incident response/reporting and notification to individuals of breach of unsecured PHI." },
     { std: "NIST CSF 2.0", ref: "RS.CO", note: "Incident response reporting and communication." },
   ],
-  ir4: [
+  ir5: [
     { std: "HIPAA", ref: "§164.404-408", note: "Individual notification, media notification, notification to HHS Secretary for breaches affecting 500+." },
     { std: "GDPR", ref: "Art. 33, Art. 34", note: "72-hour supervisory authority notification and data subject communication for high-risk breaches." },
     { std: "DORA", ref: "Art. 19(1)-(4)", note: "Initial, intermediate, and final reports to competent authorities on major ICT incidents." },
@@ -817,7 +938,7 @@ const STANDARDS_MAP = {
     { std: "CCPA/CPRA", ref: "§1798.150", note: "Data breach notification obligations and private right of action for unauthorized access to personal information." },
     { std: "NIST 800-53", ref: "IR-6, SI-5", note: "Incident reporting to designated authorities and security alerts/advisories." },
   ],
-  ir5: [
+  ir6: [
     { std: "NIST 800-53", ref: "IR-4(4), IR-6, CP-4(2)", note: "Information correlation of incident info, incident reporting including lessons learned, and contingency plan training drills." },
     { std: "DORA", ref: "Art. 13", note: "Learning and evolving — post-incident reviews to identify improvements and update ICT risk framework." },
     { std: "PCI DSS 4.0", ref: "Req 12.10.2", note: "Review and update IR plan at least annually and after significant incidents." },
@@ -1021,19 +1142,19 @@ const STANDARDS_MAP = {
     { std: "DORA", ref: "Art. 28(8)", note: "Monitoring of ICT third-party service providers including subcontracting chains." },
     { std: "NIST CSF 2.0", ref: "GV.SC-05", note: "Supply chain requirements established with suppliers and partners." },
   ],
-  sc3: [
+  sc5: [
     { std: "NIST 800-53", ref: "SR-2, SR-3, RA-3(1)", note: "Supply chain risk management plan, supply chain controls, and supply chain risk assessment." },
     { std: "NIST 800-161", ref: "RA-3(1), SR-2, PM-30", note: "Supply chain risk assessment, risk management plan, and supply chain risk management strategy." },
     { std: "DORA", ref: "Art. 28(3), Art. 29(2)", note: "Concentration risk assessment and sub-outsourcing risk analysis." },
     { std: "NIST CSF 2.0", ref: "GV.SC-07", note: "Risks posed by suppliers and third-party partners understood and managed." },
   ],
-  sc4: [
+  sc7: [
     { std: "GDPR", ref: "Art. 28(2)-(3), Art. 30", note: "Processor transparency requirements, subprocessor notification, and records of processing activities." },
     { std: "NIST CSF 2.0", ref: "GV.SC-06", note: "Due diligence conducted before entering formal supplier or third-party relationships." },
     { std: "DORA", ref: "Art. 28(3)(a)", note: "Assessment of concentration risk including sub-outsourcing to identify full dependency chain." },
     { std: "CCPA/CPRA", ref: "§1798.140(ag)", note: "Service provider definitions and requirements for transparency regarding data processing." },
   ],
-  sc5: [
+  sc8: [
     { std: "NIST 800-53", ref: "IR-4, IR-6, SR-8", note: "Incident handling, reporting, and notification of supply chain compromises." },
     { std: "NIST 800-161", ref: "IR-4, IR-6, SR-8", note: "C-SCRM specific incident handling and supply chain compromise notification." },
     { std: "DORA", ref: "Art. 11(6)", note: "ICT business continuity plans accounting for risk of third-party ICT service provider disruption." },
@@ -1084,24 +1205,24 @@ const STANDARDS_MAP = {
     { std: "DORA", ref: "Art. 8(2)", note: "ICT systems designed to be resilient and developed in accordance with risk management framework." },
     { std: "HIPAA", ref: "§164.312(a)(2)(iv)", note: "Encryption and decryption of ePHI — developers must implement required technical safeguards." },
   ],
-  as2: [
+  as3: [
     { std: "NIST 800-53", ref: "SA-10, SA-11, CM-3, CM-5, SI-7", note: "Developer config management, testing/evaluation, configuration change control, access restrictions for changes, and software integrity." },
     { std: "PCI DSS 4.0", ref: "Req 6.2, 6.5", note: "Bespoke/custom software developed securely and changes managed with proper controls." },
     { std: "NIST 800-171", ref: "3.4.3, 3.4.4, 3.4.5", note: "Track/review/approve changes, analyze security impact, and define/enforce physical/logical access restrictions." },
     { std: "DORA", ref: "Art. 8(2)", note: "Sound, comprehensive, and well-documented ICT systems acquisition, development, and maintenance." },
   ],
-  as3: [
+  as5: [
     { std: "NIST 800-53", ref: "SC-8, IA-3, IA-9, AC-4", note: "Transmission confidentiality/integrity, device identification/auth, service identification, and information flow enforcement." },
     { std: "PCI DSS 4.0", ref: "Req 6.2.3, 6.3", note: "Software code reviewed for vulnerabilities including API endpoints, and vulnerabilities addressed." },
     { std: "NIST 800-171", ref: "3.5.1, 3.13.8", note: "Identify system users, processes, and devices, and implement cryptographic mechanisms for CUI in transit (API comms)." },
   ],
-  as4: [
+  as6: [
     { std: "NIST 800-53", ref: "SC-7, SI-3, SI-4, SC-5", note: "Boundary protection (WAF), malware protection, system monitoring, and denial of service protection." },
     { std: "PCI DSS 4.0", ref: "Req 6.4", note: "Public-facing web applications are protected against attacks." },
     { std: "NIST 800-171", ref: "3.13.1, 3.14.2, 3.14.6", note: "Monitor communications at boundaries, protect against malicious code, and monitor for attacks." },
     { std: "DORA", ref: "Art. 9(1)", note: "ICT protection and prevention including against intrusions and data misuse." },
   ],
-  as5: [
+  as9: [
     { std: "NIST 800-53", ref: "SR-4, SA-10, RA-5, CM-8", note: "Provenance, developer configuration management, vulnerability scanning, and component inventory." },
     { std: "NIST 800-161", ref: "SR-3, SR-4, SR-11", note: "Supply chain controls, provenance, and component authenticity for software components." },
     { std: "PCI DSS 4.0", ref: "Req 6.3.2", note: "Inventory of bespoke and custom software and third-party components to facilitate vulnerability management." },
@@ -1151,26 +1272,26 @@ const STANDARDS_MAP = {
     { std: "DORA", ref: "Art. 13(6)", note: "Mandatory training programs including ICT security awareness and digital operational resilience training." },
     { std: "GDPR", ref: "Art. 39(1)(b)", note: "DPO tasks include awareness-raising and training of staff involved in processing." },
   ],
-  tm2: [
+  tm3: [
     { std: "NIST 800-53", ref: "PS-1 thru PS-9, PM-13", note: "Personnel security family — policy, position risk designation, screening, termination, transfer, and information security workforce." },
     { std: "NIST 800-171", ref: "3.9.1, 3.9.2", note: "Screen individuals prior to access and protect CUI during personnel actions." },
     { std: "HIPAA", ref: "§164.308(a)(3)", note: "Workforce security — authorization/supervision, workforce clearance, and termination procedures." },
     { std: "PCI DSS 4.0", ref: "Req 12.7", note: "Personnel are screened to reduce risks from insider threats." },
     { std: "DORA", ref: "Art. 5(4)", note: "Allocation of ICT budget and adequate staffing for ICT risk management." },
   ],
-  tm3: [
+  tm4: [
     { std: "NIST 800-53", ref: "PM-3, PM-11, SA-1", note: "Information security resources, mission/business process definition, and acquisition considerations." },
     { std: "DORA", ref: "Art. 5(4), Art. 6(8)", note: "Appropriate allocation of ICT investments and budgets for digital operational resilience." },
     { std: "PCI DSS 4.0", ref: "Req 12.1, 12.5", note: "Information security policy covering resource allocation and scoping documentation." },
     { std: "NIST CSF 2.0", ref: "GV.RR-02", note: "Roles and responsibilities for cybersecurity — includes resourcing." },
   ],
-  tm4: [
+  tm5: [
     { std: "NIST 800-53", ref: "AT-2, AT-3, PM-13", note: "Literacy training and awareness, role-based training, and information security workforce development." },
     { std: "NIST 800-171", ref: "3.2.1, 3.2.2", note: "Ensure managers and users are aware of security risks, and role-based training." },
     { std: "DORA", ref: "Art. 13(6)", note: "Compulsory ICT security training programmes appropriate to job function." },
     { std: "NIST CSF 2.0", ref: "GV.RR-04", note: "Adequate cybersecurity resources — people with needed skills." },
   ],
-  tm5: [
+  tm6: [
     { std: "NIST CSF 2.0", ref: "GV.OC-01, GV.RR", note: "Organizational mission is understood and informs cybersecurity risk management, and roles are established." },
     { std: "GDPR", ref: "Art. 5(2), Art. 24", note: "Accountability principle — demonstrated compliance requires internal transparency and documentation." },
     { std: "DORA", ref: "Art. 5(2)", note: "Management body defined, approves, oversees, and is accountable — requires culture of trust and transparency." },
@@ -1207,15 +1328,15 @@ const STANDARDS_SUPPLEMENT = {
     { std: "SOC 2", ref: "A1.2, A1.3, CC7.5", note: "Recovery measures — environmental protections, recovery infrastructure, and incident recovery." },
     { std: "ISO 27001", ref: "A.5.29, A.5.30, A.8.13, A.8.14", note: "Security during disruption, ICT readiness for BC, backup of information, and redundancy." },
   ],
-  ir3: [
+  ir4: [
     { std: "SOC 2", ref: "CC2.2, CC2.3, CC7.4", note: "Internal communication, communicate with external parties, and respond to incidents." },
     { std: "ISO 27001", ref: "A.5.24, A.6.8, A.5.5", note: "IR planning including communications, reporting security events, and contact with authorities." },
   ],
-  ir4: [
+  ir5: [
     { std: "SOC 2", ref: "CC7.4, CC2.3", note: "Respond to identified incidents including notification, and communicate with external parties." },
     { std: "ISO 27001", ref: "A.5.5, A.5.6", note: "Contact with authorities and contact with special interest groups for incident reporting." },
   ],
-  ir5: [
+  ir6: [
     { std: "SOC 2", ref: "CC7.5, CC4.2", note: "Recover from incidents and evaluate/communicate deficiencies — post-incident review." },
     { std: "ISO 27001", ref: "A.5.27", note: "Learning from information security incidents — knowledge gained used to strengthen controls." },
   ],
@@ -1343,15 +1464,15 @@ const STANDARDS_SUPPLEMENT = {
     { std: "SOC 2", ref: "CC7.1, CC8.1", note: "Configuration management including software components and change management for updates." },
     { std: "ISO 27001", ref: "A.5.19, A.8.9, A.8.28", note: "Supplier relationships, configuration management for dependencies, and secure coding for third-party components." },
   ],
-  sc3: [
+  sc5: [
     { std: "SOC 2", ref: "CC9.2, CC3.2", note: "Vendor risk assessment and organizational risk identification including concentration." },
     { std: "ISO 27001", ref: "A.5.21, A.5.22", note: "Managing ICT supply chain security and monitoring/reviewing supplier services." },
   ],
-  sc4: [
+  sc7: [
     { std: "SOC 2", ref: "CC2.3, CC9.2", note: "External communication and vendor transparency commitments." },
     { std: "ISO 27001", ref: "A.5.20, A.5.22", note: "Addressing security within supplier agreements and monitoring/reviewing supplier services." },
   ],
-  sc5: [
+  sc8: [
     { std: "SOC 2", ref: "CC7.3, CC7.4, CC9.2", note: "Evaluate events, respond to incidents, and manage vendor risk — supply chain incident handling." },
     { std: "ISO 27001", ref: "A.5.24, A.5.21", note: "Incident management and ICT supply chain security during incidents." },
   ],
@@ -1380,19 +1501,19 @@ const STANDARDS_SUPPLEMENT = {
     { std: "SOC 2", ref: "CC8.1, CC7.1", note: "Change management including development standards, and configuration management." },
     { std: "ISO 27001", ref: "A.8.25, A.8.26, A.8.27, A.8.28", note: "Secure development lifecycle, app security requirements, secure architecture, and secure coding." },
   ],
-  as2: [
+  as3: [
     { std: "SOC 2", ref: "CC8.1", note: "Changes to infrastructure, data, software, and procedures authorized, designed, developed, tested, and approved." },
     { std: "ISO 27001", ref: "A.8.25, A.8.31, A.8.32, A.8.33", note: "Secure development lifecycle, separation of environments, change management, and test information." },
   ],
-  as3: [
+  as5: [
     { std: "SOC 2", ref: "CC6.1, CC6.6, CC6.7", note: "Logical access, system boundaries, and information transmission — applied to API interfaces." },
     { std: "ISO 27001", ref: "A.8.24, A.8.26", note: "Use of cryptography and application security requirements — applied to API security." },
   ],
-  as4: [
+  as6: [
     { std: "SOC 2", ref: "CC6.6, CC6.7, CC7.2", note: "System boundary protection, restrict info transmission, and monitor anomalies — application layer." },
     { std: "ISO 27001", ref: "A.8.20, A.8.26", note: "Network security and application security requirements — WAF as application defense." },
   ],
-  as5: [
+  as9: [
     { std: "SOC 2", ref: "CC7.1, CC8.1", note: "Configuration management including software inventory and change management for component updates." },
     { std: "ISO 27001", ref: "A.5.19, A.8.9, A.8.28", note: "Supplier relationships, configuration management, and secure coding — open source as supply chain." },
   ],
@@ -1420,20 +1541,20 @@ const STANDARDS_SUPPLEMENT = {
     { std: "SOC 2", ref: "CC1.4, CC2.2", note: "Accountability for security responsibilities and internal communication including awareness." },
     { std: "ISO 27001", ref: "A.6.3, Clause 7.3", note: "Information security awareness/education/training and organizational awareness." },
   ],
-  tm2: [
+  tm3: [
     { std: "SOC 2", ref: "CC1.3, CC1.4, CC1.5", note: "Organizational structure, accountability, and attract/develop/retain competent individuals." },
     { std: "ISO 27001", ref: "A.6.1, A.6.2, A.6.4, A.6.5, Clause 7.2", note: "Screening, terms of employment, disciplinary process, post-employment, and competence." },
   ],
-  tm3: [
+  tm4: [
     { std: "SOC 2", ref: "CC1.3, CC5.1", note: "Management structures including resource allocation and control activity design." },
     { std: "ISO 27001", ref: "Clause 7.1, 5.1", note: "Resources and leadership commitment to ISMS." },
   ],
-  tm4: [
+  tm5: [
     { std: "SOC 2", ref: "CC1.4, CC1.5", note: "Accountability enforcement and attract/develop/retain competent individuals." },
     { std: "ISO 27001", ref: "A.6.3, Clause 7.2", note: "Information security awareness/education/training and competence." },
     { std: "ISO 42001", ref: "Clause 7.2, A.4", note: "Competence for AI management system and resources for AI." },
   ],
-  tm5: [
+  tm6: [
     { std: "SOC 2", ref: "CC1.1, CC1.2, CC2.2", note: "Integrity/ethical values, board governance, and internal communication — trust culture foundations." },
     { std: "ISO 27001", ref: "Clause 5.1, 5.2, 7.4", note: "Leadership commitment, infosec policy, and communication — transparency culture." },
   ],
@@ -1457,9 +1578,9 @@ const CMMC_MAP = {
   so5: [{ std: "CMMC 2.0", ref: "SI.L2-3.14.1, CA.L2-3.12.3", note: "Flaw remediation including automated patching, and continuous monitoring of security controls." }],
   ir1: [{ std: "CMMC 2.0", ref: "IR.L2-3.6.1, IR.L2-3.6.2, IR.L2-3.6.3", note: "Establish IR capability for organizational systems, track/document/report incidents, and test IR capability." }],
   ir2: [{ std: "CMMC 2.0", ref: "IR.L2-3.6.1, MP.L2-3.8.9, RE.L2-3.14.2", note: "IR operations including ransomware scenarios, system backup for recovery, and malicious code protection." }],
-  ir3: [{ std: "CMMC 2.0", ref: "IR.L2-3.6.2", note: "Track, document, and report incidents to designated officials and/or authorities." }],
-  ir4: [{ std: "CMMC 2.0", ref: "IR.L2-3.6.2", note: "Report incidents to designated officials — CMMC requires reporting to DoD within 72 hours for CUI incidents." }],
-  ir5: [{ std: "CMMC 2.0", ref: "IR.L2-3.6.3", note: "Test incident response capability and incorporate lessons learned into future operations." }],
+  ir4: [{ std: "CMMC 2.0", ref: "IR.L2-3.6.2", note: "Track, document, and report incidents to designated officials and/or authorities." }],
+  ir5: [{ std: "CMMC 2.0", ref: "IR.L2-3.6.2", note: "Report incidents to designated officials — CMMC requires reporting to DoD within 72 hours for CUI incidents." }],
+  ir6: [{ std: "CMMC 2.0", ref: "IR.L2-3.6.3", note: "Test incident response capability and incorporate lessons learned into future operations." }],
   ia1: [{ std: "CMMC 2.0", ref: "AC.L2-3.1.1, IA.L2-3.5.1, IA.L2-3.5.2, PS.L2-3.9.2", note: "Limit system access, identify users/processes, authenticate identities, and ensure CUI protection during personnel actions." }],
   ia2: [{ std: "CMMC 2.0", ref: "IA.L2-3.5.3, IA.L2-3.5.7, IA.L2-3.5.8", note: "Multi-factor authentication for network access to privileged accounts, network access to non-privileged, and local access to privileged." }],
   ia3: [{ std: "CMMC 2.0", ref: "IA.L2-3.5.1, IA.L2-3.5.2, AC.L2-3.1.1", note: "Identify and authenticate users, processes, and devices including across federated environments." }],
@@ -1488,29 +1609,29 @@ const CMMC_MAP = {
   ai6: [{ std: "CMMC 2.0", ref: "SI.L2-3.14.6, SI.L2-3.14.7", note: "Monitor for attacks and identify unauthorized use — AI as a tool for enhancing these CMMC-required capabilities." }],
   sc1: [{ std: "CMMC 2.0", ref: "AC.L2-3.1.20, CA.L2-3.12.4, SR.L2 (L3)", note: "Control external system connections, document third-party boundaries in SSP, and supply chain risk management at Level 3." }],
   sc2: [{ std: "CMMC 2.0", ref: "CM.L2-3.4.1, CM.L2-3.4.8, SI.L2-3.14.1", note: "Baseline configurations including software inventory, restrict/disable nonessential functions, and flaw remediation for dependencies." }],
-  sc3: [{ std: "CMMC 2.0", ref: "AC.L2-3.1.20, RA.L2-3.11.1", note: "External system connections and risk assessment — concentration risk as supply chain risk vector." }],
-  sc4: [{ std: "CMMC 2.0", ref: "CA.L2-3.12.4", note: "System security plan must document external service providers and their security responsibilities." }],
-  sc5: [{ std: "CMMC 2.0", ref: "IR.L2-3.6.1, IR.L2-3.6.2", note: "Establish IR capability and track/report incidents — including supply chain compromise events affecting CUI." }],
+  sc5: [{ std: "CMMC 2.0", ref: "AC.L2-3.1.20, RA.L2-3.11.1", note: "External system connections and risk assessment — concentration risk as supply chain risk vector." }],
+  sc7: [{ std: "CMMC 2.0", ref: "CA.L2-3.12.4", note: "System security plan must document external service providers and their security responsibilities." }],
+  sc8: [{ std: "CMMC 2.0", ref: "IR.L2-3.6.1, IR.L2-3.6.2", note: "Establish IR capability and track/report incidents — including supply chain compromise events affecting CUI." }],
   dp1: [{ std: "CMMC 2.0", ref: "AC.L2-3.1.22, MP.L2-3.8.1, MP.L2-3.8.3, MP.L2-3.8.4", note: "Control CUI posted publicly, protect media, sanitize before disposal, and mark media with CUI designations." }],
   dp2: [{ std: "CMMC 2.0", ref: "SC.L2-3.13.8, SC.L2-3.13.11, MP.L2-3.8.6", note: "CUI encryption in transit, CUI encryption at rest, and implement cryptographic mechanisms for portable storage — privacy engineering for CUI." }],
   dp3: [{ std: "CMMC 2.0", ref: "AC.L2-3.1.22", note: "Control information posted to publicly accessible systems — consent and rights management for CUI disclosure." }],
   dp4: [{ std: "CMMC 2.0", ref: "SC.L2-3.13.8, AC.L2-3.1.20", note: "CUI encryption in transit and external system connections — cross-boundary CUI transfer controls." }],
   dp5: [{ std: "CMMC 2.0", ref: "AC.L2-3.1.22, CA.L2-3.12.4", note: "CUI handling ethics documented in system security plan and controlled on publicly accessible systems." }],
   as1: [{ std: "CMMC 2.0", ref: "SI.L2-3.14.1, SA.L2-3.13.2", note: "Flaw remediation and architectural security designs — secure development for CUI-processing applications." }],
-  as2: [{ std: "CMMC 2.0", ref: "CM.L2-3.4.3, CM.L2-3.4.4, CM.L2-3.4.5", note: "Track/review/approve changes, analyze security impact of changes, and enforce access restrictions for change." }],
-  as3: [{ std: "CMMC 2.0", ref: "SC.L2-3.13.8, IA.L2-3.5.1, AC.L2-3.1.3", note: "CUI in transit via API, identify users/processes/devices at API endpoints, and control CUI flow through APIs." }],
-  as4: [{ std: "CMMC 2.0", ref: "SC.L2-3.13.1, SI.L2-3.14.2, SI.L2-3.14.6", note: "Boundary protection at application layer, malicious code protection, and monitoring for application-level attacks." }],
-  as5: [{ std: "CMMC 2.0", ref: "CM.L2-3.4.1, CM.L2-3.4.8, SI.L2-3.14.1", note: "Baseline configurations including component inventory, restrict nonessential functions, and flaw remediation for OSS." }],
+  as3: [{ std: "CMMC 2.0", ref: "CM.L2-3.4.3, CM.L2-3.4.4, CM.L2-3.4.5", note: "Track/review/approve changes, analyze security impact of changes, and enforce access restrictions for change." }],
+  as5: [{ std: "CMMC 2.0", ref: "SC.L2-3.13.8, IA.L2-3.5.1, AC.L2-3.1.3", note: "CUI in transit via API, identify users/processes/devices at API endpoints, and control CUI flow through APIs." }],
+  as6: [{ std: "CMMC 2.0", ref: "SC.L2-3.13.1, SI.L2-3.14.2, SI.L2-3.14.6", note: "Boundary protection at application layer, malicious code protection, and monitoring for application-level attacks." }],
+  as9: [{ std: "CMMC 2.0", ref: "CM.L2-3.4.1, CM.L2-3.4.8, SI.L2-3.14.1", note: "Baseline configurations including component inventory, restrict nonessential functions, and flaw remediation for OSS." }],
   be1: [{ std: "CMMC 2.0", ref: "AC.L2-3.1.20, CA.L2-3.12.4", note: "Control connections to external systems (cloud) and document cloud boundaries in system security plan." }],
   be2: [{ std: "CMMC 2.0", ref: "CA.L2-3.12.4, AC.L2-3.1.20", note: "SSP must be updated for acquired systems and connections to acquired entity networks must be controlled." }],
   be3: [{ std: "CMMC 2.0", ref: "IA.L2-3.5.1, CM.L2-3.4.1, AC.L2-3.1.20", note: "Identify IoT devices, maintain baseline configurations, and control external connections for IoT." }],
   be4: [{ std: "CMMC 2.0", ref: "AC.L2-3.1.12, AC.L2-3.1.18, AC.L2-3.1.19", note: "Monitor/control remote access, control CUI on mobile devices, and encrypt CUI on mobile devices." }],
   be5: [{ std: "CMMC 2.0", ref: "MP.L2-3.8.9, IR.L2-3.6.1", note: "System backup for CUI availability and IR capability including business recovery." }],
   tm1: [{ std: "CMMC 2.0", ref: "AT.L2-3.2.1, AT.L2-3.2.2, AT.L2-3.2.3", note: "Security awareness for all users, role-based training for personnel with security responsibilities, and insider threat awareness." }],
-  tm2: [{ std: "CMMC 2.0", ref: "PS.L2-3.9.1, PS.L2-3.9.2", note: "Screen individuals prior to authorizing access to CUI and protect CUI during personnel actions (termination/transfer)." }],
-  tm3: [{ std: "CMMC 2.0", ref: "CA.L2-3.12.2, CA.L2-3.12.4", note: "Develop/implement POA&Ms and maintain system security plan — both require budgeted resources." }],
-  tm4: [{ std: "CMMC 2.0", ref: "AT.L2-3.2.1, AT.L2-3.2.2", note: "Ensure users are aware of security risks and ensure role-based training for personnel with CUI responsibilities." }],
-  tm5: [{ std: "CMMC 2.0", ref: "CA.L2-3.12.4", note: "System security plan as a trust artifact — documents the organization's CUI protection commitment transparently." }],
+  tm3: [{ std: "CMMC 2.0", ref: "PS.L2-3.9.1, PS.L2-3.9.2", note: "Screen individuals prior to authorizing access to CUI and protect CUI during personnel actions (termination/transfer)." }],
+  tm4: [{ std: "CMMC 2.0", ref: "CA.L2-3.12.2, CA.L2-3.12.4", note: "Develop/implement POA&Ms and maintain system security plan — both require budgeted resources." }],
+  tm5: [{ std: "CMMC 2.0", ref: "AT.L2-3.2.1, AT.L2-3.2.2", note: "Ensure users are aware of security risks and ensure role-based training for personnel with CUI responsibilities." }],
+  tm6: [{ std: "CMMC 2.0", ref: "CA.L2-3.12.4", note: "System security plan as a trust artifact — documents the organization's CUI protection commitment transparently." }],
 };
 
 // Merge CMMC into main map
@@ -1564,19 +1685,19 @@ const STAKEHOLDERS_MAP = {
     { role: "Business Unit Leaders", why: "Define recovery priorities — which systems are business-critical and need to be restored first." },
     { role: "Insurance Broker / Carrier", why: "Cyber insurance activates during ransomware events — carrier's breach counsel and forensic panel engage immediately." },
   ],
-  ir3: [
+  ir4: [
     { role: "Communications / PR", why: "Owns external messaging, press responses, and customer communication — the voice of the organization in crisis." },
     { role: "Customer Success / Account Management", why: "Key customer relationships require direct, personalized communication during material incidents." },
     { role: "Board of Directors", why: "Must be briefed on material incidents per governance obligations and fiduciary duties." },
     { role: "Investor Relations", why: "Public companies must coordinate incident disclosure with IR teams for SEC/market obligations." },
   ],
-  ir4: [
+  ir5: [
     { role: "General Counsel / Legal", why: "Drives regulatory notification strategy — which regulators, what language, and jurisdictional coordination." },
     { role: "Privacy Officer / DPO", why: "GDPR, CCPA, and HIPAA breach notification obligations are the privacy team's direct responsibility." },
     { role: "Government Affairs / Regulatory", why: "Existing relationships with regulators smooth notification processes and reduce friction." },
     { role: "External Breach Counsel", why: "Specialist attorneys manage privilege, coordinate forensics, and interface with regulators on the organization's behalf." },
   ],
-  ir5: [
+  ir6: [
     { role: "All Involved Departments", why: "Blameless postmortems require every team that participated in response to share their perspective openly." },
     { role: "Quality / Process Improvement", why: "Lessons learned must be integrated into organizational processes — QA teams formalize improvements." },
     { role: "Executive Leadership", why: "Must endorse and resource post-incident remediation — unfunded lessons learned are just documentation." },
@@ -1741,17 +1862,17 @@ const STAKEHOLDERS_MAP = {
     { role: "Procurement", why: "Commercial software contracts must include SBOM requirements and supply chain security obligations." },
     { role: "Product Management", why: "Customers increasingly demand SBOMs — product teams must factor supply chain transparency into roadmaps." },
   ],
-  sc3: [
+  sc5: [
     { role: "Enterprise Architecture", why: "Architectural decisions create vendor concentration — multi-cloud and platform diversity are architecture choices." },
     { role: "Procurement", why: "Must track the full vendor portfolio to identify single-vendor dependencies and concentration risk." },
     { role: "Business Continuity", why: "Vendor concentration directly threatens continuity — BC planning must include vendor failover scenarios." },
   ],
-  sc4: [
+  sc7: [
     { role: "Sales / Customer Success", why: "Customers demand vendor transparency — security reviews, questionnaires, and trust center content enable deals." },
     { role: "Marketing", why: "Trust pages, security certifications, and transparency reports are marketing assets that build customer confidence." },
     { role: "Legal / Privacy", why: "Subprocessor lists, DPA disclosures, and data flow documentation are legal obligations made transparent." },
   ],
-  sc5: [
+  sc8: [
     { role: "Procurement / Vendor Management", why: "First point of contact with vendors during supply chain incidents — owns the relationship and escalation." },
     { role: "Communications / PR", why: "Supply chain incidents affecting customers require coordinated external communication." },
     { role: "Business Continuity", why: "Supply chain disruptions trigger business continuity plans — alternate vendors and workarounds." },
@@ -1793,21 +1914,21 @@ const STAKEHOLDERS_MAP = {
     { role: "Engineering Managers", why: "Prioritize security training, allocate sprint time for security fixes, and enforce secure coding standards." },
     { role: "QA / Testing", why: "Security testing is part of quality assurance — QA integrates SAST/DAST into test plans." },
   ],
-  as2: [
+  as3: [
     { role: "DevOps / Platform Engineering", why: "Owns CI/CD pipelines where security tools are embedded — pipeline design determines security integration points." },
     { role: "Software Engineering", why: "Developers interact with DevSecOps gates daily — build failures and security findings affect their workflow." },
     { role: "Release Management", why: "Security gates can block releases — release managers negotiate risk-based deployment decisions." },
   ],
-  as3: [
+  as5: [
     { role: "Software Engineering / API Teams", why: "Designs, builds, and maintains APIs — API security starts with secure design patterns." },
     { role: "Product Management", why: "APIs are product features — rate limits, auth requirements, and data exposure are product decisions." },
     { role: "Partner / Integration Teams", why: "Third-party API consumers need documentation, authentication guidance, and secure integration patterns." },
   ],
-  as4: [
+  as6: [
     { role: "IT Operations / Network", why: "Deploys and manages WAF, DDoS protection, and bot management infrastructure." },
     { role: "Software Engineering", why: "WAF bypass investigation and application-layer fix implementation require developer involvement." },
   ],
-  as5: [
+  as9: [
     { role: "Software Engineering", why: "Makes daily decisions about which open-source components to use — they're the first line of SCA." },
     { role: "Legal", why: "Open-source license compliance is a legal obligation — copyleft, attribution, and commercial use restrictions." },
     { role: "Procurement", why: "Commercial alternatives to open-source components require procurement evaluation and budget." },
@@ -1849,22 +1970,22 @@ const STAKEHOLDERS_MAP = {
     { role: "Communications / Internal Comms", why: "Security awareness campaigns need internal communications support for reach and engagement." },
     { role: "All Department Managers", why: "Reinforce security culture in their teams — managers set behavioral expectations beyond formal training." },
   ],
-  tm2: [
+  tm3: [
     { role: "HR / Recruiting", why: "Partners on security role requisitions, compensation benchmarking, and talent pipeline development." },
     { role: "Finance / CFO", why: "Headcount budget approval, contractor vs. FTE decisions, and compensation competitiveness." },
     { role: "Executive Leadership", why: "Staffing decisions are strategic — the right team composition enables or constrains the security program." },
   ],
-  tm3: [
+  tm4: [
     { role: "CFO / Finance", why: "Approves and manages the security budget — CapEx/OpEx allocation, forecasting, and variance tracking." },
     { role: "Procurement", why: "Tool licensing, consultant contracts, and vendor renewals flow through procurement processes." },
     { role: "Executive Leadership", why: "Budget prioritization reflects strategic priorities — leadership arbitrates between competing investments." },
   ],
-  tm4: [
+  tm5: [
     { role: "HR / Learning & Development", why: "Manages training budgets, certification programs, and career development frameworks." },
     { role: "Individual Contributors", why: "Skills development is ultimately an individual investment — motivation and growth mindset matter." },
     { role: "Engineering / DevOps Leaders", why: "Cross-functional skill needs (DevSecOps, cloud security) require collaboration with engineering leadership." },
   ],
-  tm5: [
+  tm6: [
     { role: "CEO / Executive Leadership", why: "Trust culture starts at the top — executives must model transparency and psychological safety." },
     { role: "HR", why: "Reporting protections, blameless investigation standards, and whistleblower policies are HR-managed frameworks." },
     { role: "Communications / Internal Comms", why: "Internal transparency requires communication channels and practices that make openness the norm." },
@@ -1883,20 +2004,35 @@ const count = FRAMEWORK.children.length;
 const OUTER_RADIUS = 290;
 const CHILD_DISTANCE = 155;
 const getAngle = (i) => (360 / count) * i - 90;
-const getChildSpread = (n) => { const mx = 360 / count - 4; const id = 28; return (n - 1) * id > mx ? mx / (n - 1) : id; };
+const getChildSpread = (n, isExpanded) => {
+  if (isExpanded) {
+    return Math.max(16, Math.min(30, 150 / n));
+  }
+  const mx = 360 / count - 4; const id = 28; return (n - 1) * id > mx ? mx / (n - 1) : id;
+};
 
 const branchPositions = {};
-const childPositions = {};
 FRAMEWORK.children.forEach((branch, i) => {
   const angle = getAngle(i);
-  const pos = polarToCart(CX, CY, OUTER_RADIUS, angle);
-  branchPositions[branch.id] = pos;
-  const spread = getChildSpread(branch.children.length);
-  branch.children.forEach((child, ci) => {
-    const cAngle = angle - ((branch.children.length - 1) * spread) / 2 + ci * spread;
-    childPositions[child.id] = polarToCart(pos.x, pos.y, CHILD_DISTANCE, cAngle);
-  });
+  branchPositions[branch.id] = polarToCart(CX, CY, OUTER_RADIUS, angle);
 });
+
+function computeChildPositions(expandedId) {
+  const positions = {};
+  FRAMEWORK.children.forEach((branch, i) => {
+    const angle = getAngle(i);
+    const pos = branchPositions[branch.id];
+    const isExp = branch.id === expandedId;
+    const n = branch.children.length;
+    const dist = isExp ? (n >= 10 ? 270 : n >= 8 ? 250 : 235) : CHILD_DISTANCE;
+    const spread = getChildSpread(n, isExp);
+    branch.children.forEach((child, ci) => {
+      const cAngle = angle - ((n - 1) * spread) / 2 + ci * spread;
+      positions[child.id] = polarToCart(pos.x, pos.y, dist, cAngle);
+    });
+  });
+  return positions;
+}
 
 function DepLine({ x1, y1, x2, y2, color, type }) {
   const dx = x2 - x1, dy = y2 - y1;
@@ -1926,6 +2062,7 @@ export default function TrustMap() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const toggleBranch = useCallback((id) => { setExpanded((p) => (p === id ? null : id)); setSelected(null); }, []);
+  const childPositions = useMemo(() => computeChildPositions(expanded), [expanded]);
   const handleWheel = useCallback((e) => { e.preventDefault(); setZoom((z) => Math.max(0.3, Math.min(3, z * (e.deltaY > 0 ? 1.08 : 0.92)))); }, []);
   useEffect(() => { const el = svgRef.current; if (el) { el.addEventListener("wheel", handleWheel, { passive: false }); return () => el.removeEventListener("wheel", handleWheel); } }, [handleWheel]);
 
@@ -2028,7 +2165,23 @@ export default function TrustMap() {
             </div>
           </div>
           <div style={{ padding: "8px 16px 12px", overflowY: "auto", flex: 1 }}>
-            {depTab === "info" && <p style={{ fontSize: 12, lineHeight: 1.6, color: "#94A3B8", margin: 0 }}>{selected.desc}</p>}
+            {depTab === "info" && (
+              <div>
+                <p style={{ fontSize: 12, lineHeight: 1.6, color: "#94A3B8", margin: 0 }}>{selected.desc}</p>
+                {selected.children && selected.children.length > 0 && (
+                  <>
+                    <div style={{ height: 1, background: "#1e293b", margin: "10px 0" }} />
+                    <div style={{ fontSize: 9, fontFamily: "'JetBrains Mono',monospace", color: "#64748B", letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>Key Practices</div>
+                    {selected.children.map((sub, i) => (
+                      <div key={i} style={{ padding: "5px 8px", marginBottom: 3, borderLeft: "2px solid #334155", borderRadius: 2 }}>
+                        <div style={{ fontSize: 10.5, fontWeight: 600, color: "#E2E8F0", marginBottom: 1 }}>{sub.label}</div>
+                        <div style={{ fontSize: 10, lineHeight: 1.5, color: "#94A3B8" }}>{sub.desc}</div>
+                      </div>
+                    ))}
+                  </>
+                )}
+              </div>
+            )}
             {depTab === "upstream" && (selDeps.upstream.length === 0 ? <p style={{ fontSize: 11, color: "#475569", margin: 0, fontStyle: "italic" }}>No upstream dependencies mapped.</p> :
               selDeps.upstream.map((dep, i) => (
                 <div key={`u${i}`} className="dep-item" style={{ padding: "6px 8px", marginBottom: 3, borderLeft: `3px solid ${dep.color}` }}>
@@ -2091,7 +2244,7 @@ export default function TrustMap() {
         <circle cx={CX} cy={CY} r={180} fill="url(#centerGlow)" />
         <circle cx={CX} cy={CY} r={OUTER_RADIUS} fill="none" stroke="#1e293b" strokeWidth={0.5} strokeDasharray="4 6" />
 
-        {/* Dependency lines */}
+        {/* Dependency lines for selected sub-node */}
         {selected && selDeps && (() => {
           const selPos = childPositions[selected.id];
           const lines = [];
@@ -2111,7 +2264,7 @@ export default function TrustMap() {
         {FRAMEWORK.children.map((b, i) => <g key={`l${b.id}`} opacity={isFiltering && !matchingBranches.has(b.id) ? 0.1 : 1} style={{ transition: "opacity 0.3s" }}><CurvedLine x1={CX} y1={CY} x2={branchPositions[b.id].x} y2={branchPositions[b.id].y} color={b.color} animated={expanded === b.id || hoveredBranch === b.id} delay={i * 0.1} /></g>)}
 
         {/* Child lines */}
-        {FRAMEWORK.children.map((b, i) => { if (expanded !== b.id) return null; const pos = branchPositions[b.id]; const spread = getChildSpread(b.children.length); const angle = getAngle(i); return b.children.map((c, ci) => { const cA = angle - ((b.children.length - 1) * spread) / 2 + ci * spread; const cP = polarToCart(pos.x, pos.y, CHILD_DISTANCE, cA); return <g key={`cl${c.id}`} opacity={isFiltering && !matchingIds.has(c.id) ? 0.1 : 1} style={{ transition: "opacity 0.3s" }}><CurvedLine x1={pos.x} y1={pos.y} x2={cP.x} y2={cP.y} color={b.color} animated delay={ci * 0.06} /></g>; }); })}
+        {FRAMEWORK.children.map((b, i) => { if (expanded !== b.id) return null; const pos = branchPositions[b.id]; return b.children.map((c, ci) => { const cP = childPositions[c.id]; return <g key={`cl${c.id}`} opacity={isFiltering && !matchingIds.has(c.id) ? 0.1 : 1} style={{ transition: "opacity 0.3s" }}><CurvedLine x1={pos.x} y1={pos.y} x2={cP.x} y2={cP.y} color={b.color} animated delay={ci * 0.06} /></g>; }); })}
 
         {/* Branch nodes */}
         {FRAMEWORK.children.map((b, i) => {
@@ -2119,7 +2272,6 @@ export default function TrustMap() {
           const dimmed = isFiltering && !matchingBranches.has(b.id);
           const isCon = selected && connectedBranches.has(b.id);
           const shouldDim = selected && !isCon && !isExp;
-          const spread = getChildSpread(b.children.length); const angle = getAngle(i);
           return (
             <g key={b.id} opacity={dimmed ? 0.1 : shouldDim ? 0.2 : 1} style={{ transition: "opacity 0.3s" }}>
               {(isExp || isHov || isCon) && <circle cx={pos.x} cy={pos.y} r={55} fill={`url(#glow-${b.id})`} />}
@@ -2129,8 +2281,7 @@ export default function TrustMap() {
                 {b.label.split("\n").map((l, li) => <text key={li} x={pos.x} y={pos.y + 8 + li * 12} textAnchor="middle" fill={isExp || isCon ? "#F1F5F9" : "#94A3B8"} style={{ fontSize: 9, fontWeight: 600, fontFamily: "'DM Sans',sans-serif", letterSpacing: 0.3, transition: "fill 0.3s" }}>{l}</text>)}
               </g>
               {isExp && b.children.map((c, ci) => {
-                const cA = angle - ((b.children.length - 1) * spread) / 2 + ci * spread;
-                const cP = polarToCart(pos.x, pos.y, CHILD_DISTANCE, cA);
+                const cP = childPositions[c.id];
                 const isSel = selected?.id === c.id; const dimC = isFiltering && !matchingIds.has(c.id);
                 const isDep = selected && connectedIds.has(c.id);
                 const shouldDimC = selected && !isSel && !isDep;
