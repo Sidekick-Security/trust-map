@@ -3521,6 +3521,7 @@ export default function TrustMap() {
   const [zoom, setZoom] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [legendCollapsed, setLegendCollapsed] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
 
   const [expandedSettled, setExpandedSettled] = useState(false);
   const toggleBranch = useCallback((id) => { setExpanded((p) => (p === id ? null : id)); setSelected(null); setExpandedSettled(false); }, []);
@@ -3566,7 +3567,7 @@ export default function TrustMap() {
       <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "45vmin", height: "45vmin", backgroundImage: "url(/sidekick-logo.png)", backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", pointerEvents: "none", zIndex: 5, animation: "watermarkPulse 6s ease-in-out infinite" }} />
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
       <style>{`
-        @keyframes watermarkPulse { 0%,100%{opacity:0.01}50%{opacity:0.03} }
+        @keyframes watermarkPulse { 0%,100%{opacity:0.04}50%{opacity:0.08} }
         @keyframes dashFlow { to { stroke-dashoffset: -20; } }
         @keyframes pulseGlow { 0%,100%{opacity:.6}50%{opacity:1} }
         @keyframes fadeSlideIn { from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)} }
@@ -3729,6 +3730,51 @@ export default function TrustMap() {
         </div>
       )}
 
+      {/* Info Panel */}
+      {showInfo && (
+        <div style={{ position: "absolute", bottom: 14, left: 14, right: 14, zIndex: 20, maxWidth: 760, margin: "0 auto", background: "rgba(15,23,42,0.97)", border: "1px solid #00a2e844", borderRadius: 12, backdropFilter: "blur(20px)", animation: "fadeSlideIn 0.3s ease", maxHeight: "50vh", display: "flex", flexDirection: "column" }}>
+          <div style={{ padding: "14px 20px 0", flexShrink: 0 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+              <div>
+                <div className="panel-subtitle" style={{ fontSize: 11, fontFamily: "'JetBrains Mono',monospace", color: "#00a2e8", letterSpacing: 2, textTransform: "uppercase", marginBottom: 3 }}>About</div>
+                <div className="panel-title" style={{ fontSize: 18, fontWeight: 700, color: "#F1F5F9" }}>Trust & Transparency Program</div>
+              </div>
+              <button onClick={() => setShowInfo(false)} style={{ background: "none", border: "1px solid #334155", borderRadius: 6, color: "#94A3B8", cursor: "pointer", padding: "3px 10px", fontSize: 13 }}>✕</button>
+            </div>
+          </div>
+          <div style={{ padding: "12px 20px 16px", overflowY: "auto", flex: 1 }}>
+            <p className="panel-desc" style={{ fontSize: 14, lineHeight: 1.7, color: "#94A3B8", margin: "0 0 12px" }}>
+              This interactive map visualizes a comprehensive security trust and transparency program broken into <strong style={{ color: "#E2E8F0" }}>12 domains</strong> and <strong style={{ color: "#E2E8F0" }}>102 sub-domains</strong>. It is designed to help CISOs, security leaders, and stakeholders understand the full scope of a modern security program and how every capability connects to others.
+            </p>
+            <div style={{ height: 1, background: "#1e293b", margin: "10px 0" }} />
+            <div style={{ fontSize: 11, fontFamily: "'JetBrains Mono',monospace", color: "#64748B", letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>How to Use</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {[
+                { icon: "🔍", title: "Explore domains", text: "Click any domain node around the ring to expand it and see its sub-domains. Click again to collapse." },
+                { icon: "📋", title: "Drill into sub-domains", text: "Click a sub-domain to see its narrative description, key practices, dependency relationships, mapped regulatory standards, and organizational stakeholders." },
+                { icon: "🔗", title: "Trace dependencies", text: "Each sub-domain shows what it depends on and what depends on it — revealing the hidden connections across your security program." },
+                { icon: "📏", title: "Standards mapping", text: "Sub-domains are mapped to NIST 800-53, CSF 2.0, HIPAA, PCI DSS, DORA, GDPR, SOC 2, ISO 27001, CMMC 2.0, and more." },
+                { icon: "👥", title: "Stakeholder visibility", text: "Each sub-domain identifies the organizational roles that own, execute, or are impacted by that capability." },
+                { icon: "🔎", title: "Search", text: "Use the search bar to quickly find any domain or sub-domain by name or keyword." },
+                { icon: "🖐", title: "Navigate", text: "Click and drag anywhere to pan. Scroll or use +/− to zoom. Works on mobile with touch." },
+              ].map((item, i) => (
+                <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                  <span style={{ fontSize: 14, flexShrink: 0, marginTop: 1 }}>{item.icon}</span>
+                  <div>
+                    <span className="panel-practice-label" style={{ fontSize: 13, fontWeight: 600, color: "#E2E8F0" }}>{item.title}</span>
+                    <span className="panel-practice-desc" style={{ fontSize: 13, color: "#94A3B8" }}> — {item.text}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div style={{ height: 1, background: "#1e293b", margin: "12px 0 10px" }} />
+            <p className="panel-desc" style={{ fontSize: 13, lineHeight: 1.6, color: "#64748B", margin: 0 }}>
+              Built by <strong style={{ color: "#94A3B8" }}>Sidekick Security</strong>. For the full methodology, framework rationale, and implementation guidance, see the accompanying whitepaper.
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* SVG */}
       <svg ref={svgRef} viewBox={vb} style={{ width: "100%", height: "100%", display: "block" }} onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={handlePointerUp} onPointerLeave={handlePointerUp}>
         <defs>
@@ -3797,12 +3843,12 @@ export default function TrustMap() {
         })}
 
         {/* Center */}
-        <g>
+        <g style={{ cursor: "pointer" }} onClick={(e) => { e.stopPropagation(); setShowInfo(true); setSelected(null); }}>
           <circle cx={CX} cy={CY} r={52} fill="#0f172a" stroke="#00a2e8" strokeWidth={2} filter="url(#softGlow)" />
           <circle cx={CX} cy={CY} r={58} fill="none" stroke="#00a2e8" strokeWidth={0.5} opacity={0.3} />
-          <text x={CX} y={CY - 12} textAnchor="middle" fill="#00a2e8" style={{ fontSize: 10, fontWeight: 700, fontFamily: "'Bank Gothic','BankGothic Md BT',sans-serif", letterSpacing: 1.5 }}>TRUST &</text>
-          <text x={CX} y={CY + 2} textAnchor="middle" fill="#00a2e8" style={{ fontSize: 10, fontWeight: 700, fontFamily: "'Bank Gothic','BankGothic Md BT',sans-serif", letterSpacing: 1.5 }}>TRANSPARENCY</text>
-          <text x={CX} y={CY + 16} textAnchor="middle" fill="#94A3B8" style={{ fontSize: 8, fontWeight: 500, fontFamily: "'Bank Gothic','BankGothic Md BT',sans-serif", letterSpacing: 0.5 }}>PROGRAM</text>
+          <text x={CX} y={CY - 12} textAnchor="middle" fill="#00a2e8" style={{ fontSize: 10, fontWeight: 700, fontFamily: "'Bank Gothic','BankGothic Md BT',sans-serif", letterSpacing: 1.5, pointerEvents: "none" }}>TRUST &</text>
+          <text x={CX} y={CY + 2} textAnchor="middle" fill="#00a2e8" style={{ fontSize: 10, fontWeight: 700, fontFamily: "'Bank Gothic','BankGothic Md BT',sans-serif", letterSpacing: 1.5, pointerEvents: "none" }}>TRANSPARENCY</text>
+          <text x={CX} y={CY + 16} textAnchor="middle" fill="#94A3B8" style={{ fontSize: 8, fontWeight: 500, fontFamily: "'Bank Gothic','BankGothic Md BT',sans-serif", letterSpacing: 0.5, pointerEvents: "none" }}>PROGRAM</text>
         </g>
       </svg>
     </div>
