@@ -3562,7 +3562,7 @@ export default function TrustMap() {
   return (
     <div style={{ width: "100%", height: "100vh", background: "linear-gradient(145deg, #0a0e1a 0%, #111827 40%, #0f172a 100%)", fontFamily: "'DM Sans', 'Segoe UI', sans-serif", position: "relative", overflow: "hidden", cursor: isPanning ? "grabbing" : "grab" }}>
       {/* Subtle background watermark */}
-      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "45vmin", height: "45vmin", backgroundImage: "url(/sidekick-logo.png)", backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", pointerEvents: "none", zIndex: 0, animation: "watermarkPulse 6s ease-in-out infinite" }} />
+      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "45vmin", height: "45vmin", backgroundImage: "url(/sidekick-logo.png)", backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", pointerEvents: "none", zIndex: 5, animation: "watermarkPulse 6s ease-in-out infinite" }} />
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
       <style>{`
         @keyframes watermarkPulse { 0%,100%{opacity:0.01}50%{opacity:0.03} }
