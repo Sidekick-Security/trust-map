@@ -3520,6 +3520,7 @@ export default function TrustMap() {
   const [panStart, setPanStart] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const [legendCollapsed, setLegendCollapsed] = useState(false);
 
   const [expandedSettled, setExpandedSettled] = useState(false);
   const toggleBranch = useCallback((id) => { setExpanded((p) => (p === id ? null : id)); setSelected(null); setExpandedSettled(false); }, []);
@@ -3572,6 +3573,22 @@ export default function TrustMap() {
         @keyframes depPulse { 0%,100%{opacity:.4}50%{opacity:.85} }
         .dep-item { transition: background 0.15s; border-radius: 6px; }
         .dep-item:hover { background: rgba(255,255,255,0.04); }
+        @media (max-width: 768px) {
+          .detail-panel { max-height: 50vh !important; }
+          .detail-panel .panel-title { font-size: 15px !important; }
+          .detail-panel .panel-subtitle { font-size: 10px !important; }
+          .detail-panel .panel-tab { font-size: 10px !important; padding: 5px 8px !important; }
+          .detail-panel .panel-desc { font-size: 12px !important; }
+          .detail-panel .panel-practice-label { font-size: 11px !important; }
+          .detail-panel .panel-practice-desc { font-size: 11px !important; }
+          .detail-panel .panel-dep-label { font-size: 11px !important; }
+          .detail-panel .panel-dep-reason { font-size: 11px !important; }
+          .detail-panel .panel-std-name { font-size: 9px !important; }
+          .detail-panel .panel-std-ref { font-size: 9px !important; }
+          .detail-panel .panel-std-note { font-size: 11px !important; }
+          .detail-panel .panel-sh-role { font-size: 11px !important; }
+          .detail-panel .panel-sh-why { font-size: 11px !important; }
+        }
       `}</style>
 
       {/* Header */}
@@ -3600,9 +3617,12 @@ export default function TrustMap() {
       </div>
 
       {/* Legend */}
-      <div style={{ position: "absolute", top: 112, right: 14, zIndex: 10, background: "rgba(15,23,42,0.88)", border: "1px solid #1e293b", borderRadius: 10, padding: "10px 14px", backdropFilter: "blur(12px)", maxHeight: "calc(100vh - 130px)", overflowY: "auto" }}>
-        <div style={{ fontSize: 11, fontFamily: "'JetBrains Mono',monospace", color: "#64748B", letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>Domains</div>
-        {FRAMEWORK.children.map((b) => {
+      <div style={{ position: "absolute", top: 112, right: 14, zIndex: 10, background: "rgba(15,23,42,0.88)", border: "1px solid #1e293b", borderRadius: 10, padding: legendCollapsed ? "6px 10px" : "10px 14px", backdropFilter: "blur(12px)", maxHeight: "calc(100vh - 130px)", overflowY: "auto", transition: "padding 0.2s" }}>
+        <div onClick={() => setLegendCollapsed((c) => !c)} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, cursor: "pointer", fontSize: 11, fontFamily: "'JetBrains Mono',monospace", color: "#64748B", letterSpacing: 2, textTransform: "uppercase", marginBottom: legendCollapsed ? 0 : 6 }}>
+          <span>Domains</span>
+          <span style={{ fontSize: 10, transition: "transform 0.2s", transform: legendCollapsed ? "rotate(-90deg)" : "rotate(0deg)" }}>▼</span>
+        </div>
+        {!legendCollapsed && FRAMEWORK.children.map((b) => {
           const dimLegend = selected && connectedBranches.size > 0 && !connectedBranches.has(b.id);
           return (
             <div key={b.id} onClick={() => toggleBranch(b.id)} style={{ display: "flex", alignItems: "center", gap: 8, padding: "4px 8px", marginBottom: 2, borderRadius: 5, cursor: "pointer", background: expanded === b.id ? `${b.color}15` : "transparent", opacity: isFiltering && !matchingBranches.has(b.id) ? 0.25 : dimLegend ? 0.3 : 1, transition: "all 0.2s" }}>
@@ -3625,58 +3645,58 @@ export default function TrustMap() {
 
       {/* Detail Panel */}
       {selected && selDeps && (
-        <div style={{ position: "absolute", bottom: 14, left: 14, right: 14, zIndex: 20, maxWidth: 760, margin: "0 auto", background: "rgba(15,23,42,0.97)", border: `1px solid ${branchColorMap[childToBranch[selected.id]]}44`, borderRadius: 12, backdropFilter: "blur(20px)", animation: "fadeSlideIn 0.3s ease", maxHeight: "42vh", display: "flex", flexDirection: "column" }}>
+        <div className="detail-panel" style={{ position: "absolute", bottom: 14, left: 14, right: 14, zIndex: 20, maxWidth: 760, margin: "0 auto", background: "rgba(15,23,42,0.97)", border: `1px solid ${branchColorMap[childToBranch[selected.id]]}44`, borderRadius: 12, backdropFilter: "blur(20px)", animation: "fadeSlideIn 0.3s ease", maxHeight: "42vh", display: "flex", flexDirection: "column" }}>
           <div style={{ padding: "14px 20px 0", flexShrink: 0 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
               <div>
-                <div style={{ fontSize: 11, fontFamily: "'JetBrains Mono',monospace", color: branchColorMap[childToBranch[selected.id]], letterSpacing: 2, textTransform: "uppercase", marginBottom: 3 }}>{branchLabelMap[childToBranch[selected.id]]}</div>
-                <div style={{ fontSize: 18, fontWeight: 700, color: "#F1F5F9" }}>{selected.label}</div>
+                <div className="panel-subtitle" style={{ fontSize: 11, fontFamily: "'JetBrains Mono',monospace", color: branchColorMap[childToBranch[selected.id]], letterSpacing: 2, textTransform: "uppercase", marginBottom: 3 }}>{branchLabelMap[childToBranch[selected.id]]}</div>
+                <div className="panel-title" style={{ fontSize: 18, fontWeight: 700, color: "#F1F5F9" }}>{selected.label}</div>
               </div>
               <button onClick={() => setSelected(null)} style={{ background: "none", border: "1px solid #334155", borderRadius: 6, color: "#94A3B8", cursor: "pointer", padding: "3px 10px", fontSize: 13 }}>✕</button>
             </div>
             <div style={{ display: "flex", gap: 1, marginTop: 8, borderBottom: "1px solid #1e293b", overflowX: "auto", scrollbarWidth: "none" }}>
               {[{ key: "info", label: "Overview" }, { key: "upstream", label: `Depends On (${selDeps.upstream.length})` }, { key: "downstream", label: `Depended By (${selDeps.downstream.length})` }, { key: "standards", label: `Standards (${(STANDARDS_MAP[selected.id] || []).length})` }, { key: "stakeholders", label: `Stakeholders (${(STAKEHOLDERS_MAP[selected.id] || []).length})` }].map((tab) => (
-                <button key={tab.key} onClick={() => setDepTab(tab.key)} style={{ background: depTab === tab.key ? "rgba(255,255,255,0.06)" : "transparent", border: "none", borderBottom: depTab === tab.key ? "2px solid #F59E0B" : "2px solid transparent", color: depTab === tab.key ? "#F1F5F9" : "#64748B", padding: "6px 12px", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "'DM Sans',sans-serif", transition: "all 0.2s" }}>{tab.label}</button>
+                <button className="panel-tab" key={tab.key} onClick={() => setDepTab(tab.key)} style={{ background: depTab === tab.key ? "rgba(255,255,255,0.06)" : "transparent", border: "none", borderBottom: depTab === tab.key ? "2px solid #F59E0B" : "2px solid transparent", color: depTab === tab.key ? "#F1F5F9" : "#64748B", padding: "6px 12px", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "'DM Sans',sans-serif", transition: "all 0.2s" }}>{tab.label}</button>
               ))}
             </div>
           </div>
           <div style={{ padding: "10px 20px 14px", overflowY: "auto", flex: 1 }}>
             {depTab === "info" && (
               <div>
-                <p style={{ fontSize: 14, lineHeight: 1.6, color: "#94A3B8", margin: 0 }}>{selected.desc}</p>
+                <p className="panel-desc" style={{ fontSize: 14, lineHeight: 1.6, color: "#94A3B8", margin: 0 }}>{selected.desc}</p>
                 {selected.children && selected.children.length > 0 && (
                   <>
                     <div style={{ height: 1, background: "#1e293b", margin: "10px 0" }} />
                     <div style={{ fontSize: 11, fontFamily: "'JetBrains Mono',monospace", color: "#64748B", letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>Key Practices</div>
                     {selected.children.map((sub, i) => (
                       <div key={i} style={{ padding: "5px 8px", marginBottom: 3, borderLeft: "2px solid #334155", borderRadius: 2 }}>
-                        <div style={{ fontSize: 13, fontWeight: 600, color: "#E2E8F0", marginBottom: 2 }}>{sub.label}</div>
-                        <div style={{ fontSize: 13, lineHeight: 1.5, color: "#94A3B8" }}>{sub.desc}</div>
+                        <div className="panel-practice-label" style={{ fontSize: 13, fontWeight: 600, color: "#E2E8F0", marginBottom: 2 }}>{sub.label}</div>
+                        <div className="panel-practice-desc" style={{ fontSize: 13, lineHeight: 1.5, color: "#94A3B8" }}>{sub.desc}</div>
                       </div>
                     ))}
                   </>
                 )}
               </div>
             )}
-            {depTab === "upstream" && (selDeps.upstream.length === 0 ? <p style={{ fontSize: 13, color: "#475569", margin: 0, fontStyle: "italic" }}>No upstream dependencies mapped.</p> :
+            {depTab === "upstream" && (selDeps.upstream.length === 0 ? <p className="panel-dep-reason" style={{ fontSize: 13, color: "#475569", margin: 0, fontStyle: "italic" }}>No upstream dependencies mapped.</p> :
               selDeps.upstream.map((dep, i) => (
                 <div key={`u${i}`} className="dep-item" style={{ padding: "6px 8px", marginBottom: 3, borderLeft: `3px solid ${dep.color}` }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 2 }}>
-                    <span style={{ fontSize: 13, fontWeight: 700, color: dep.color }}>{dep.label}</span>
+                    <span className="panel-dep-label" style={{ fontSize: 13, fontWeight: 700, color: dep.color }}>{dep.label}</span>
                     <span style={{ fontSize: 10, color: "#475569", fontFamily: "'JetBrains Mono',monospace" }}>· {dep.branch}</span>
                   </div>
-                  <p style={{ fontSize: 13, lineHeight: 1.5, color: "#94A3B8", margin: 0 }}>{dep.reason}</p>
+                  <p className="panel-dep-reason" style={{ fontSize: 13, lineHeight: 1.5, color: "#94A3B8", margin: 0 }}>{dep.reason}</p>
                 </div>
               ))
             )}
-            {depTab === "downstream" && (selDeps.downstream.length === 0 ? <p style={{ fontSize: 13, color: "#475569", margin: 0, fontStyle: "italic" }}>No downstream dependencies mapped.</p> :
+            {depTab === "downstream" && (selDeps.downstream.length === 0 ? <p className="panel-dep-reason" style={{ fontSize: 13, color: "#475569", margin: 0, fontStyle: "italic" }}>No downstream dependencies mapped.</p> :
               selDeps.downstream.map((dep, i) => (
                 <div key={`d${i}`} className="dep-item" style={{ padding: "6px 8px", marginBottom: 3, borderLeft: `3px solid ${dep.color}` }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 2 }}>
-                    <span style={{ fontSize: 13, fontWeight: 700, color: dep.color }}>{dep.label}</span>
+                    <span className="panel-dep-label" style={{ fontSize: 13, fontWeight: 700, color: dep.color }}>{dep.label}</span>
                     <span style={{ fontSize: 10, color: "#475569", fontFamily: "'JetBrains Mono',monospace" }}>· {dep.branch}</span>
                   </div>
-                  <p style={{ fontSize: 13, lineHeight: 1.5, color: "#94A3B8", margin: 0 }}>{dep.reason}</p>
+                  <p className="panel-dep-reason" style={{ fontSize: 13, lineHeight: 1.5, color: "#94A3B8", margin: 0 }}>{dep.reason}</p>
                 </div>
               ))
             )}
@@ -3686,10 +3706,10 @@ export default function TrustMap() {
               return stds.map((s, i) => (
                 <div key={`s${i}`} className="dep-item" style={{ padding: "6px 8px", marginBottom: 4, borderLeft: `3px solid ${STD_COLORS[s.std] || "#64748B"}` }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 2, flexWrap: "wrap" }}>
-                    <span style={{ fontSize: 11, fontWeight: 700, color: STD_COLORS[s.std] || "#94A3B8", fontFamily: "'JetBrains Mono',monospace", letterSpacing: 0.5, textTransform: "uppercase" }}>{s.std}</span>
-                    <span style={{ fontSize: 11, color: "#F1F5F9", fontFamily: "'JetBrains Mono',monospace", background: "rgba(255,255,255,0.06)", padding: "2px 7px", borderRadius: 3 }}>{s.ref}</span>
+                    <span className="panel-std-name" style={{ fontSize: 11, fontWeight: 700, color: STD_COLORS[s.std] || "#94A3B8", fontFamily: "'JetBrains Mono',monospace", letterSpacing: 0.5, textTransform: "uppercase" }}>{s.std}</span>
+                    <span className="panel-std-ref" style={{ fontSize: 11, color: "#F1F5F9", fontFamily: "'JetBrains Mono',monospace", background: "rgba(255,255,255,0.06)", padding: "2px 7px", borderRadius: 3 }}>{s.ref}</span>
                   </div>
-                  <p style={{ fontSize: 13, lineHeight: 1.5, color: "#94A3B8", margin: 0 }}>{s.note}</p>
+                  <p className="panel-std-note" style={{ fontSize: 13, lineHeight: 1.5, color: "#94A3B8", margin: 0 }}>{s.note}</p>
                 </div>
               ));
             })()}
@@ -3699,9 +3719,9 @@ export default function TrustMap() {
               return sth.map((s, i) => (
                 <div key={`sh${i}`} className="dep-item" style={{ padding: "6px 8px", marginBottom: 4, borderLeft: "3px solid #94A3B8" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 2 }}>
-                    <span style={{ fontSize: 13, fontWeight: 700, color: "#E2E8F0" }}>{s.role}</span>
+                    <span className="panel-sh-role" style={{ fontSize: 13, fontWeight: 700, color: "#E2E8F0" }}>{s.role}</span>
                   </div>
-                  <p style={{ fontSize: 13, lineHeight: 1.5, color: "#94A3B8", margin: 0 }}>{s.why}</p>
+                  <p className="panel-sh-why" style={{ fontSize: 13, lineHeight: 1.5, color: "#94A3B8", margin: 0 }}>{s.why}</p>
                 </div>
               ));
             })()}
